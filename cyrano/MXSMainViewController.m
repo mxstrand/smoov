@@ -139,9 +139,10 @@ enum
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *selectedMessage = [messages objectAtIndex:indexPath.row];
+    MXSMessage *selectedMessage = [messages objectAtIndex:indexPath.row];
+    NSString *selectedContent = selectedMessage.content;
     //NSArray *selectedAttachments = [NSString stringWithFormat:@"icon%d.png", indexPath.row];
-    [self showSMS:selectedMessage];
+    [self showSMS:selectedContent];
 }
 
 - (void)showSMS:(NSString*)message {
