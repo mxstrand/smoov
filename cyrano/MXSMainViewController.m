@@ -40,6 +40,7 @@ enum
     // Dispose of any resources that can be recreated.
 }
 
+
 - (IBAction)chooseCategory:(id)sender
 {
     
@@ -205,8 +206,16 @@ enum
     message = [MXSMessage new];
     message.content = @"I'm really excited to spend some time together after work.";
     [messages addObject:message];
-    
-    
+
+    message = [MXSMessage new];
+    message.content = @"Let's light some candles tonight during dinner. #romantic";
+    [messages addObject:message];
+
 }
+
+// A woman's version would let women text guys about sports - with prepopulation of games on that weekend, important players - or video games.
+// Tutorial on client driven reminder notifications.  http://www.appcoda.com/ios-programming-local-notification-tutorial/
+// Repeating timers https://developer.apple.com/library/ios/documentation/cocoa/reference/foundation/Classes/NSTimer_Class/Reference/NSTimer.html
+
 
 @end
