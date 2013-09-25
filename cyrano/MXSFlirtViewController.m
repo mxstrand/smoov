@@ -130,7 +130,7 @@ enum
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    self.tableView.rowHeight = 80.f;
+    self.tableView.rowHeight = 60.f;
     return [messages count];
 }
 

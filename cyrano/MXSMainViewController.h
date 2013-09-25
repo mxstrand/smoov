@@ -10,4 +10,7 @@
 
 @interface MXSMainViewController : UITableViewController
 
+@property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
+
+
 @end

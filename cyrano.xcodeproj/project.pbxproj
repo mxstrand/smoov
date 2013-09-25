@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6558549A17F23E5100A8B596 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6558549917F23E5100A8B596 /* iAd.framework */; };
 		65D944E817ECEC3A0081E073 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D944E717ECEC3A0081E073 /* Foundation.framework */; };
 		65D944EA17ECEC3A0081E073 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D944E917ECEC3A0081E073 /* CoreGraphics.framework */; };
 		65D944EC17ECEC3A0081E073 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D944EB17ECEC3A0081E073 /* UIKit.framework */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6558549917F23E5100A8B596 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		65D944E417ECEC3A0081E073 /* cyrano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cyrano.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D944E717ECEC3A0081E073 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		65D944E917ECEC3A0081E073 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -71,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6558549A17F23E5100A8B596 /* iAd.framework in Frameworks */,
 				65E723B717ED608600A294EB /* MessageUI.framework in Frameworks */,
 				65D944EA17ECEC3A0081E073 /* CoreGraphics.framework in Frameworks */,
 				65D944EC17ECEC3A0081E073 /* UIKit.framework in Frameworks */,
@@ -113,6 +116,7 @@
 		65D944E617ECEC3A0081E073 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6558549917F23E5100A8B596 /* iAd.framework */,
 				65E723B617ED608600A294EB /* MessageUI.framework */,
 				65D944E717ECEC3A0081E073 /* Foundation.framework */,
 				65D944E917ECEC3A0081E073 /* CoreGraphics.framework */,

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "cyrano/MXSMainViewController.m"
-            timestampString = "401654211.423839"
+            timestampString = "401824953.822255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
             landmarkName = "-loadMessages"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "cyrano/MXSMainViewController.m"
-            timestampString = "401654211.423839"
+            timestampString = "401824953.822255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
             landmarkName = "-showSMS:"
             landmarkType = "5">
          </BreakpointContent>

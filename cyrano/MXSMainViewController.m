@@ -10,6 +10,9 @@
 #import "MXSMessage.h"
 #import "MXSMessageCell.h"
 #import <MessageUI/MessageUI.h>
+#import <iAd/iAd.h>
+#import <AddressBook/AddressBook.h>
+#import <AddressBookUI/AddressBookUI.h>
 
 enum
 {
@@ -17,7 +20,7 @@ enum
     NumberOfSections
 } SectionEnumerator;
 
-@interface MXSMainViewController () <UIActionSheetDelegate>
+@interface MXSMainViewController () <UIActionSheetDelegate, ABPeoplePickerNavigationControllerDelegate>
 {
     NSMutableArray *messages;
 }
@@ -29,6 +32,14 @@ enum
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // navBar.barTintColor = [UIColor colorWithRed:117/255.0f green:4/255.0f blue:32/255.0f alpha:1];
+    
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    self.tableView.separatorColor = [UIColor colorWithRed:230/255.0f green:128/255.0f blue:0/255.0f alpha:1];
+    
+    //self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    
 	// Do any additional setup after loading the view, typically from a nib.
     [self loadMessages];
     
@@ -40,6 +51,15 @@ enum
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)choosePrimaryContact:(id)sender
+{
+    ABPeoplePickerNavigationController *picker =
+    [[ABPeoplePickerNavigationController alloc] init];
+    picker.peoplePickerDelegate = self;
+    [self presentModalViewController:picker animated:YES];
+}
+
+
 
 - (IBAction)chooseCategory:(id)sender
 {
@@ -48,14 +68,21 @@ enum
                                                                     delegate:self
                                                            cancelButtonTitle:@"Cancel"
                                                       destructiveButtonTitle:nil
-                                                           otherButtonTitles:@"Flirt",
-                                                                             @"Birthday",
-                                                                             @"Anniversary",
+                                                           otherButtonTitles:@"Flirt / Funny",
+                                                                             @"Get a Date",
+                                                                             @"Birthday / Anniversary",
+                                                                             @"Romantic",
                                                                              @"Get Lucky",
+                                                                             @"Most Popular",
                                                                              @"I'm Sorry", nil];
     
-    [displayImageOption showInView:self.view];
+
+    //[displayImageOption setAlpha:0.75];
+    [displayImageOption setOpaque:YES];
     
+    //displayImageOption.actionSheetStyle=UIActionSheetStyleBlackTranslucent; //why isn't this working?
+    //displayImageOption.actionSheetStyle=UIActionSheetStyleBlackOpaque; //why isn't this working?
+    [displayImageOption showInView:self.view];
 }
 
 #pragma mark - UIActionSheet Delegate
@@ -63,27 +90,34 @@ enum
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     if(buttonIndex == 0){
-        [self gotoFlirt];
+        [self gotoFlirtFunny];
     }
     if(buttonIndex == 1){
-        [self gotoBirthday];
+        [self gotoGetADate];
     }
     if(buttonIndex == 2){
-        [self gotoBirthday];
+        [self gotoBirthdayAnniversary];
     }
     if(buttonIndex == 3){
-        [self gotoAnniversary];
+        [self gotoRomantic];
     }
     if(buttonIndex == 4){
         [self gotoGetLucky];
     }
     if(buttonIndex == 5){
+       [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    if(buttonIndex == 6){
         [self gotoImSorry];
     }
-
 }
 
-- (void)gotoFlirt
+- (void)willPresentActionSheet:(UIActionSheet *)displayImageOption
+{
+    //displayImageOption.actionSheetStyle=UIActionSheetStyleBlackTranslucent;
+}
+
+- (void)gotoFlirtFunny
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     //The name "Main_iPhone" is the filename of your storyboard (without the extension).
@@ -96,14 +130,19 @@ enum
     //The view controller's identifier has to be set as the "Storyboard ID" in the Identity Inspector.
 
 }
-- (void)gotoBirthday
+
+- (void)gotoBirthdayAnniversary
 {
 
 }
 
-- (void)gotoAnniversary
+- (void)gotoGetADate
 {
+    
+}
 
+- (void)gotoRomantic
+{
 }
 
 - (void)gotoGetLucky
@@ -125,7 +164,7 @@ enum
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    self.tableView.rowHeight = 80.f;
+    self.tableView.rowHeight = 60.f;
     return [messages count];
 }
 
@@ -208,9 +247,53 @@ enum
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"Let's light some candles tonight during dinner. #romantic";
+    message.content = @"Let's light some candles tonight during dinner.";
+    [messages addObject:message];
+    
+    message = [MXSMessage new];
+    message.content = @"Thanks for everything you do around the house.";
     [messages addObject:message];
 
+    message = [MXSMessage new];
+    message.content = @"Greatest hits 5";
+    [messages addObject:message];
+
+    message = [MXSMessage new];
+    message.content = @"Greatest hits 6";
+    [messages addObject:message];
+
+    message = [MXSMessage new];
+    message.content = @"Greatest hits 7";
+    [messages addObject:message];
+
+    message = [MXSMessage new];
+    message.content = @"Greatest hits 8";
+    [messages addObject:message];
+
+    message = [MXSMessage new];
+    message.content = @"Greatest hits 9";
+    [messages addObject:message];
+
+}
+
+#pragma mark ABPeoplePickerNavigationControllerDelegate methods
+// Displays the information of a selected person
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
+{
+    return YES;
+}
+
+// Does not allow users to perform default actions such as dialing a phone number, when they select a person property.
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
+                                property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
+{
+    return NO;
+}
+
+// Dismisses the people picker and shows the application when users tap Cancel.
+- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker;
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 // A woman's version would let women text guys about sports - with prepopulation of games on that weekend, important players - or video games.
