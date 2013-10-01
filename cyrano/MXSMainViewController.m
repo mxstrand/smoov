@@ -20,9 +20,10 @@ enum
     NumberOfSections
 } SectionEnumerator;
 
-@interface MXSMainViewController () <UIActionSheetDelegate, ABPeoplePickerNavigationControllerDelegate>
+@interface MXSMainViewController () <UIActionSheetDelegate, MFMessageComposeViewControllerDelegate>
 {
     NSMutableArray *messages;
+    NSUserDefaults *standard; //supported abbreviated code in NSUserDefaults code references.
 }
 
 @end
@@ -42,6 +43,23 @@ enum
     
 	// Do any additional setup after loading the view, typically from a nib.
     [self loadMessages];
+    standard = [NSUserDefaults standardUserDefaults];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if ([standard objectForKey:@"Person"]) {
+        NSString *person = [standard stringForKey:@"Person"];
+        NSLog(@"Person is %@", person);
+    }
+    
+    if ([standard objectForKey:@"mobilePhoneNumber"]) {
+        NSString *mobilePhoneNumber = [standard stringForKey:@"mobilePhoneNumber"];
+        NSLog(@"mobile phone number is %@", mobilePhoneNumber);
+    }
     
 }
 
@@ -51,12 +69,18 @@ enum
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)choosePrimaryContact:(id)sender
+- (IBAction)gotoUserPreferences:(id)sender
 {
-    ABPeoplePickerNavigationController *picker =
-    [[ABPeoplePickerNavigationController alloc] init];
-    picker.peoplePickerDelegate = self;
-    [self presentModalViewController:picker animated:YES];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //The name "Main_iPhone" is the filename of your storyboard (without the extension).
+    //NSLog(
+    
+    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MXSPreferencesViewController"];
+    // push to current navigation controller, from any view controller
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    //The view controller's identifier has to be set as the "Storyboard ID" in the Identity Inspector.
+    
 }
 
 
@@ -75,9 +99,6 @@ enum
                                                                              @"Get Lucky",
                                                                              @"Most Popular",
                                                                              @"I'm Sorry", nil];
-    
-
-    //[displayImageOption setAlpha:0.75];
     [displayImageOption setOpaque:YES];
     
     //displayImageOption.actionSheetStyle=UIActionSheetStyleBlackTranslucent; //why isn't this working?
@@ -192,14 +213,21 @@ enum
         [warningAlert show];
         return;
     }
-    
-    //NSArray *recipents = @[@""];
+   
+    NSLog(@"After clicking desired message composite name is %@", [standard stringForKey:@"CompositeName"]);
     NSString *SMSmessage = [NSString stringWithFormat:@"%@", message];
     //NSArray *attachments = attachments;
     
     MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
     messageController.messageComposeDelegate = self;
-    // [messageController setRecipients:recipents];
+   
+    NSLog(@"Mobile Number %@",[standard stringForKey:@"mobilePhoneNumber"]);
+    
+    // Only populate the recipient, if a default recipient has been set.
+    if ([standard stringForKey:@"mobilePhoneNumber"] != NULL) {
+     [messageController setRecipients:@[[standard stringForKey:@"mobilePhoneNumber"]]];//Each string in the array should contain the phone number of the intended recipient.
+    }
+
     [messageController setBody:SMSmessage];
     // [messageController addAttachmentURL:attachments];
     
@@ -274,26 +302,6 @@ enum
     message.content = @"Greatest hits 9";
     [messages addObject:message];
 
-}
-
-#pragma mark ABPeoplePickerNavigationControllerDelegate methods
-// Displays the information of a selected person
-- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
-{
-    return YES;
-}
-
-// Does not allow users to perform default actions such as dialing a phone number, when they select a person property.
-- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
-                                property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
-{
-    return NO;
-}
-
-// Dismisses the people picker and shows the application when users tap Cancel.
-- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker;
-{
-    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 // A woman's version would let women text guys about sports - with prepopulation of games on that weekend, important players - or video games.
