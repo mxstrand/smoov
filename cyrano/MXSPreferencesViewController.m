@@ -1,12 +1,12 @@
 //
-//  MXSPeferencesViewController.m
+//  MXSPreferencesViewController.m
 //  cyrano
 //
 //  Created by Michael Strand on 9/25/13.
 //  Copyright (c) 2013 Michael Strand. All rights reserved.
 //
 
-#import "MXSPeferencesViewController.h"
+#import "MXSPreferencesViewController.h"
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
 #import <EventKit/EventKit.h>
@@ -14,7 +14,7 @@
 #import <iAd/iAd.h>
 #import <uservoice-iphone-sdk/UserVoice.h>
 
-@interface MXSPeferencesViewController () <ABPeoplePickerNavigationControllerDelegate>
+@interface MXSPreferencesViewController () <ABPeoplePickerNavigationControllerDelegate>
 {
     NSUserDefaults *standard; //supported abbreviated code in NSUserDefaults code references
 }
@@ -25,7 +25,7 @@
 
 @end
 
-@implementation MXSPeferencesViewController
+@implementation MXSPreferencesViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,37 +47,17 @@
 {
     [super viewWillAppear:animated];
     
-    if ([standard objectForKey:@"Person"]) {
-        NSString *person = [standard stringForKey:@"Person"];
-        [_personLabel setText:person];
-        NSLog(@"Person is %@", [standard stringForKey:@"Person"]);
-    }
+    [self checkWeeklyCalendarEvent];
+    [self checkWeeklyReminder];
     
-    if ([standard objectForKey:@"CompositeName"]) {
-        NSLog(@"Composite name is %@", [standard stringForKey:@"CompositeName"]);
-    }
-    
+    [self checkDefaultRecipient];
     if ([standard objectForKey:@"mobilePhoneNumber"]) {
         NSLog(@"Mobile number is %@", [standard stringForKey:@"mobilePhoneNumber"]);
     }
-    
-    // Check to see if the user has already set a recurring calendar event.
-    BOOL recurringCalendarEventSet = [standard boolForKey:@"recurringCalendarEventSet"];
-    if ( recurringCalendarEventSet == YES ) {
-        [_weeklyCalendarEventStatusLabel setText:@"Calendar event already set."];
-        NSLog(@"Recurring calendar event bool is set to %d", [standard boolForKey:@"recurringCalendarEventSet"]);
-        }
-    [_weeklyCalendarEventStatusLabel setText:@"No event set."];
-    NSLog(@"Recurring calendar event bool is set to %d", [standard boolForKey:@"recurringCalendarEventSet"]);
-    
-    // Check to see if the user has already set a reminder.
-    BOOL reminderOn = [standard boolForKey:@"reminderOn"];
-    if ( reminderOn == YES ) {
-        [_weeklyCalendarEventStatusLabel setText:@"Reminder already set."];
-        NSLog(@"Reminder bool is set to %d", [standard boolForKey:@"reminderOn"]);
+    else
+    {
+    NSLog(@"Default recipient has NOT been set");
     }
-    [_weeklyCalendarEventStatusLabel setText:@"No event set."];
-    NSLog(@"Reminder bool is set to %d", [standard boolForKey:@"reminderOn"]);
 }
 
 
@@ -86,8 +66,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-- (IBAction)choosePrimaryContact:(id)sender
+- (IBAction)chooseDefaultRecipient:(id)sender
 {
     ABPeoplePickerNavigationController *picker =
     [[ABPeoplePickerNavigationController alloc] init];
@@ -97,11 +76,60 @@
 
 - (IBAction)submitText:(id)sender
 {
-    UVConfig *config = [UVConfig configWithSite:@"strandcode.uservoice.com"
-                                         andKey:@"67q2CaIMgvUYVY19JhCow"
-                                      andSecret:@"Zne5bmfI498LLwrvWGa2fThMTv2K8VbWP2kvcjHqvY"];
+    UVConfig *config = [UVConfig configWithSite:@"smoov.uservoice.com"
+                                         andKey:@"jXrGUkCby9YjzgTsoKIA"
+                                      andSecret:@"xSDPS0gEKKTf8R142QuJlrR3VjPpqlAtAcWMw6R0Y"];
     
     [UserVoice presentUserVoiceInterfaceForParentViewController:self andConfig:config];
+}
+
+#pragma mark populateLabelsFromUserDefaults
+
+- (void)checkDefaultRecipient
+{
+    // Check to see if the user has already set a default recipient.
+    if ([standard objectForKey:@"Person"]) {
+        NSString *person = [standard stringForKey:@"Person"];
+        [_personLabel setText:person];
+        NSLog(@"Person is %@", [standard stringForKey:@"Person"]);
+    }
+    else {
+    [_personLabel setText:@"No default recipient set."];
+    }
+    
+    // Composite name is not currently being saved or used.
+    if ([standard objectForKey:@"CompositeName"]) {
+        NSLog(@"Composite name is %@", [standard stringForKey:@"CompositeName"]);
+    }
+}
+
+- (void)checkWeeklyCalendarEvent
+{
+    // Check to see if the user has already set a recurring calendar event.
+    BOOL recurringCalendarEventSet = [standard boolForKey:@"recurringCalendarEventSet"];
+    if ( recurringCalendarEventSet == YES ) {
+        [_weeklyCalendarEventStatusLabel setText:@"Calendar event already set."];
+        NSLog(@"Recurring calendar event bool is set to %d", [standard boolForKey:@"recurringCalendarEventSet"]);
+    }
+    else {
+    [_weeklyCalendarEventStatusLabel setText:@"No calendar event set."];
+    NSLog(@"Recurring calendar event bool is set to %d", [standard boolForKey:@"recurringCalendarEventSet"]);
+    }
+
+}
+
+- (void)checkWeeklyReminder
+{
+    // Check to see if the user has already set a reminder.
+    BOOL reminderOn = [standard boolForKey:@"reminderOn"];
+    if ( reminderOn == YES ) {
+        [_weeklyReminderStatusLabel setText:@"Reminder already set."];
+        NSLog(@"Reminder bool is set to %d", [standard boolForKey:@"reminderOn"]);
+    }
+    else {
+    [_weeklyReminderStatusLabel setText:@"No reminder set."];
+    NSLog(@"Reminder bool is set to %d", [standard boolForKey:@"reminderOn"]);
+    }
 }
 
 
@@ -114,6 +142,7 @@
     ABMultiValueRef phones = (ABMultiValueRef)ABRecordCopyValue(person, kABPersonPhoneProperty);
     NSString* mobile=@"";
     NSString* mobileLabel;
+    
     for (int i=0; i < ABMultiValueGetCount(phones); i++) {
         mobileLabel = (NSString*)CFBridgingRelease(ABMultiValueCopyLabelAtIndex(phones, i));
         if([mobileLabel isEqualToString:(NSString *)kABPersonPhoneMobileLabel]) {
@@ -164,7 +193,7 @@
 
 - (IBAction)clearPrimaryContact:(id)sender
 {
-    NSString* fullName = @"No Default Recipient";
+    NSString* fullName = @"No default recipient";
     NSString* mobile=NULL;
     
     [standard setValue:fullName forKey:@"Person"];
@@ -292,7 +321,5 @@
     return [[NSCalendar currentCalendar] dateByAddingComponents:comps toDate:[NSDate date] options:0];
 }
 
-//Reminders tutorial
-//http://www.techotopia.com/index.php/Using_iOS_6_Event_Kit_to_Create_Date_and_Location_Based_Reminders
 
 @end

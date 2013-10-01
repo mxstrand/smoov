@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MXSMainViewController : UITableViewController
+@interface MXSMainViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
-
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 
 @end

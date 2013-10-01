@@ -1,5 +1,5 @@
 //
-//  MXSPeferencesViewController.h
+//  MXSPreferencesViewController.h
 //  cyrano
 //
 //  Created by Michael Strand on 9/25/13.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MXSPeferencesViewController : UIViewController
+@interface MXSPreferencesViewController : UIViewController
 
 @property (nonatomic, weak) IBOutlet UILabel *personLabel;
 

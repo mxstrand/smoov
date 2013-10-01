@@ -8,9 +8,12 @@
 
 #import "MXSFlirtViewController.h"
 #import "MXSMainViewController.h"
+
 #import "MXSMessage.h"
 #import "MXSMessageCell.h"
+
 #import <MessageUI/MessageUI.h>
+#import "UIActionSheet+MessageCategory.h"
 
 enum
 {
@@ -19,7 +22,7 @@ enum
 } SectionEnumerator;
 
 
-@interface MXSFlirtViewController () <UIActionSheetDelegate>
+@interface MXSFlirtViewController ()
 {
     NSMutableArray *messages;
 }
@@ -41,85 +44,16 @@ enum
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)goHome:(id)sender {
-   [self.navigationController popToRootViewControllerAnimated:YES];
-}
 
-
-- (IBAction)chooseCategory:(id)sender
-{
+- (IBAction)chooseMessageCategory:(id)sender {
     
-    UIActionSheet *displayImageOption = [[UIActionSheet alloc] initWithTitle:@""
-                                                                    delegate:self
-                                                           cancelButtonTitle:@"Cancel"
-                                                      destructiveButtonTitle:nil
-                                                           otherButtonTitles:@"Flirt",
-                                         @"Birthday",
-                                         @"Anniversary",
-                                         @"Get Lucky",
-                                         @"I'm Sorry", nil];
+    // Use the Objective-c category for choosing a message cateogry
+    UIActionSheet *displayImageOption = [UIActionSheet showMessageCategoriesWithNavController:self.navigationController];
     
     [displayImageOption showInView:self.view];
     
 }
 
-#pragma mark - UIActionSheet Delegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    if(buttonIndex == 0){
-        [self gotoFlirt];
-    }
-    if(buttonIndex == 1){
-        [self gotoBirthday];
-    }
-    if(buttonIndex == 2){
-        [self gotoBirthday];
-    }
-    if(buttonIndex == 3){
-        [self gotoAnniversary];
-    }
-    if(buttonIndex == 4){
-        [self gotoGetLucky];
-    }
-    if(buttonIndex == 5){
-        [self gotoImSorry];
-    }
-    
-}
-
-- (void)gotoFlirt
-{
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    //The name "Main_iPhone" is the filename of your storyboard (without the extension).
-    //NSLog(
-    
-    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MXSFlirtViewController"];
-    // push to current navigation controller, from any view controller
-    
-    [self.navigationController pushViewController:vc animated:YES];
-    //The view controller's identifier has to be set as the "Storyboard ID" in the Identity Inspector.
-    
-}
-- (void)gotoBirthday
-{
-    
-}
-
-- (void)gotoAnniversary
-{
-    
-}
-
-- (void)gotoGetLucky
-{
-    
-}
-
-- (void)gotoImSorry
-{
-    
-}
 
 #pragma mark - UITableView data source
 

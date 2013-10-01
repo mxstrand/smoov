@@ -13,6 +13,7 @@
 #import <iAd/iAd.h>
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
+#import "UIActionSheet+MessageCategory.h"
 
 enum
 {
@@ -20,10 +21,10 @@ enum
     NumberOfSections
 } SectionEnumerator;
 
-@interface MXSMainViewController () <UIActionSheetDelegate, MFMessageComposeViewControllerDelegate>
+@interface MXSMainViewController () <MFMessageComposeViewControllerDelegate>
 {
     NSMutableArray *messages;
-    NSUserDefaults *standard; //supported abbreviated code in NSUserDefaults code references.
+    NSUserDefaults *standard; //supports abbreviated code in NSUserDefaults code references.
 }
 
 @end
@@ -34,12 +35,9 @@ enum
 {
     [super viewDidLoad];
     
-    // navBar.barTintColor = [UIColor colorWithRed:117/255.0f green:4/255.0f blue:32/255.0f alpha:1];
-    
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:230/255.0f green:128/255.0f blue:0/255.0f alpha:1];
     self.tableView.separatorColor = [UIColor colorWithRed:230/255.0f green:128/255.0f blue:0/255.0f alpha:1];
-    
-    //self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     
 	// Do any additional setup after loading the view, typically from a nib.
     [self loadMessages];
@@ -72,7 +70,7 @@ enum
 - (IBAction)gotoUserPreferences:(id)sender
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    //The name "Main_iPhone" is the filename of your storyboard (without the extension).
+    //The name "Main" is the filename of your storyboard (without the extension).
     //NSLog(
     
     UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MXSPreferencesViewController"];
@@ -82,99 +80,14 @@ enum
     //The view controller's identifier has to be set as the "Storyboard ID" in the Identity Inspector.
     
 }
-
-
-
-- (IBAction)chooseCategory:(id)sender
-{
+- (IBAction)chooseMessageCategory:(id)sender {
     
-    UIActionSheet *displayImageOption = [[UIActionSheet alloc] initWithTitle:@""
-                                                                    delegate:self
-                                                           cancelButtonTitle:@"Cancel"
-                                                      destructiveButtonTitle:nil
-                                                           otherButtonTitles:@"Flirt / Funny",
-                                                                             @"Get a Date",
-                                                                             @"Birthday / Anniversary",
-                                                                             @"Romantic",
-                                                                             @"Get Lucky",
-                                                                             @"Most Popular",
-                                                                             @"I'm Sorry", nil];
-    [displayImageOption setOpaque:YES];
+    // Use the Objective-c category for choosing a message cateogry
+    UIActionSheet *displayImageOption = [UIActionSheet showMessageCategoriesWithNavController:self.navigationController];
     
-    //displayImageOption.actionSheetStyle=UIActionSheetStyleBlackTranslucent; //why isn't this working?
-    //displayImageOption.actionSheetStyle=UIActionSheetStyleBlackOpaque; //why isn't this working?
     [displayImageOption showInView:self.view];
 }
 
-#pragma mark - UIActionSheet Delegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    if(buttonIndex == 0){
-        [self gotoFlirtFunny];
-    }
-    if(buttonIndex == 1){
-        [self gotoGetADate];
-    }
-    if(buttonIndex == 2){
-        [self gotoBirthdayAnniversary];
-    }
-    if(buttonIndex == 3){
-        [self gotoRomantic];
-    }
-    if(buttonIndex == 4){
-        [self gotoGetLucky];
-    }
-    if(buttonIndex == 5){
-       [self.navigationController popToRootViewControllerAnimated:YES];
-    }
-    if(buttonIndex == 6){
-        [self gotoImSorry];
-    }
-}
-
-- (void)willPresentActionSheet:(UIActionSheet *)displayImageOption
-{
-    //displayImageOption.actionSheetStyle=UIActionSheetStyleBlackTranslucent;
-}
-
-- (void)gotoFlirtFunny
-{
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    //The name "Main_iPhone" is the filename of your storyboard (without the extension).
-    //NSLog(
-    
-    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MXSFlirtViewController"];
-    // push to current navigation controller, from any view controller
-    
-    [self.navigationController pushViewController:vc animated:YES];
-    //The view controller's identifier has to be set as the "Storyboard ID" in the Identity Inspector.
-
-}
-
-- (void)gotoBirthdayAnniversary
-{
-
-}
-
-- (void)gotoGetADate
-{
-    
-}
-
-- (void)gotoRomantic
-{
-}
-
-- (void)gotoGetLucky
-{
-
-}
-
-- (void)gotoImSorry
-{
-
-}
 
 #pragma mark - UITableView data source
 
@@ -186,7 +99,9 @@ enum
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     self.tableView.rowHeight = 60.f;
+    
     return [messages count];
+    
 }
 
 -(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -194,6 +109,7 @@ enum
     MXSMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MessageViewCell" forIndexPath:indexPath];
     [cell populateWithMessage:messages[indexPath.row]];
     return cell;
+    
 }
 
 #pragma mark - Table view delegate
@@ -214,7 +130,6 @@ enum
         return;
     }
    
-    NSLog(@"After clicking desired message composite name is %@", [standard stringForKey:@"CompositeName"]);
     NSString *SMSmessage = [NSString stringWithFormat:@"%@", message];
     //NSArray *attachments = attachments;
     
