@@ -331,7 +331,7 @@
 -(void) showCalendarSuccessAlert
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Be smoov."
-                                                    message:[NSString stringWithFormat:@"Success! A recurring weekly event to use smoov has been added to your calendar. This event shows as 'free' and will not block your calendar. You can edit this event like any other calendar item."]
+                                                    message:[NSString stringWithFormat:@"Success! A weekly event to use smoov has been added to your calendar, starting today!"]
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
@@ -341,7 +341,7 @@
 -(void) showCalendarDupeAlert
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You're already smoov."
-                                                    message:[NSString stringWithFormat:@"We agree that you can never be too smoov, but you've already added smoov to your calendar."]
+                                                    message:[NSString stringWithFormat:@"You can never be too smoov, but you've already added smoov to your calendar."]
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
@@ -352,7 +352,7 @@
 -(void) showReminderSuccessAlert
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Be smoov."
-                                                    message:[NSString stringWithFormat:@"Success! A reminder to use smoov has been added to your reminders list. You can edit it like any other reminder item."]
+                                                    message:[NSString stringWithFormat:@"Success! A reminder to use smoov has been added to your reminders list."]
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
@@ -362,7 +362,7 @@
 -(void) showReminderDupeAlert
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You're already smoov."
-                                                    message:[NSString stringWithFormat:@"We agree that you can never be too smoov, but you've already added smoov to your reminder list."]
+                                                    message:[NSString stringWithFormat:@"You can never be too smoov, but you've already added smoov to your reminder list."]
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];

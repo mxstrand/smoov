@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 
+- (void)showSMS:(NSString*)message;
+
 @end

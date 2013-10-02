@@ -122,33 +122,6 @@ enum
     [self showSMS:selectedContent];
 }
 
-- (void)showSMS:(NSString*)message {
-    
-    if(![MFMessageComposeViewController canSendText]) {
-        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [warningAlert show];
-        return;
-    }
-   
-    NSString *SMSmessage = [NSString stringWithFormat:@"%@", message];
-    //NSArray *attachments = attachments;
-    
-    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
-    messageController.messageComposeDelegate = self;
-   
-    NSLog(@"Mobile Number %@",[standard stringForKey:@"mobilePhoneNumber"]);
-    
-    // Only populate the recipient, if a default recipient has been set.
-    if ([standard stringForKey:@"mobilePhoneNumber"] != NULL) {
-     [messageController setRecipients:@[[standard stringForKey:@"mobilePhoneNumber"]]];//Each string in the array should contain the phone number of the intended recipient.
-    }
-
-    [messageController setBody:SMSmessage];
-    // [messageController addAttachmentURL:attachments];
-    
-    // Present message view controller on screen
-    [self presentViewController:messageController animated:YES completion:nil];
-}
 
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult) result
 {
@@ -172,6 +145,37 @@ enum
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - showSMS
+
+- (void)showSMS:(NSString*)message {
+    
+    if(![MFMessageComposeViewController canSendText]) {
+        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [warningAlert show];
+        return;
+    }
+    
+    NSString *SMSmessage = [NSString stringWithFormat:@"%@", message];
+    //NSArray *attachments = attachments;
+    
+    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+    messageController.messageComposeDelegate = self;
+    
+    NSLog(@"Mobile Number %@",[standard stringForKey:@"mobilePhoneNumber"]);
+    
+    // Only populate the recipient, if a default recipient has been set.
+    if ([standard stringForKey:@"mobilePhoneNumber"] != NULL) {
+        [messageController setRecipients:@[[standard stringForKey:@"mobilePhoneNumber"]]];//Each string in the array should contain the phone number of the intended recipient.
+    }
+    
+    [messageController setBody:SMSmessage];
+    // [messageController addAttachmentURL:attachments];
+    
+    // Present message view controller on screen
+    [self presentViewController:messageController animated:YES completion:nil];
+}
+
 
 
 #pragma mark - Messages

@@ -25,6 +25,7 @@ enum
 @interface MXSFlirtViewController ()
 {
     NSMutableArray *messages;
+    NSUserDefaults *standard; //supports abbreviated code in NSUserDefaults code references.
 }
 
 @end
@@ -36,6 +37,7 @@ enum
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self loadMessages];
+    standard = [NSUserDefaults standardUserDefaults];
     
 }
 
@@ -85,27 +87,6 @@ enum
     [self showSMS:selectedContent];
 }
 
-- (void)showSMS:(NSString*)message {
-    
-    if(![MFMessageComposeViewController canSendText]) {
-        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [warningAlert show];
-        return;
-    }
-    
-    //NSArray *recipents = @[@""];
-    NSString *SMSmessage = [NSString stringWithFormat:@"%@", message];
-    //NSArray *attachments = attachments;
-    
-    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
-    messageController.messageComposeDelegate = self;
-    // [messageController setRecipients:recipents];
-    [messageController setBody:SMSmessage];
-    // [messageController addAttachmentURL:attachments];
-    
-    // Present message view controller on screen
-    [self presentViewController:messageController animated:YES completion:nil];
-}
 
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult) result
 {
@@ -129,7 +110,6 @@ enum
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 #pragma mark - Messages
 
