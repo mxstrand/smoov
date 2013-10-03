@@ -16,5 +16,12 @@
 
 @property (nonatomic, weak) IBOutlet UILabel *weeklyReminderStatusLabel;
 
+@property (nonatomic, weak) IBOutlet UISwitch *weeklyCalendarEventSwitch;
+
+@property (nonatomic, weak) IBOutlet UISwitch *weeklyReminderSwitch;
+
+
+@property (nonatomic, weak) IBOutlet UIButton *setDefaultRecipientButton;
+
 
 @end

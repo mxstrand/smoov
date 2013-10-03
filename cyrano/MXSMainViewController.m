@@ -42,7 +42,6 @@ enum
 	// Do any additional setup after loading the view, typically from a nib.
     [self loadMessages];
     standard = [NSUserDefaults standardUserDefaults];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -202,11 +201,11 @@ enum
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"Greatest hits 5";
+    message.content = @"I bet you are going to do awesome at work today.";
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"Greatest hits 6";
+    message.content = @"Hey, what's your favorite flower? I just want to know.";
     [messages addObject:message];
 
     message = [MXSMessage new];

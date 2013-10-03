@@ -13,6 +13,8 @@
 #import <UIKit/UIKit.h>
 #import <iAd/iAd.h>
 #import <uservoice-iphone-sdk/UserVoice.h>
+#import "Flurry.h"
+
 
 @interface MXSPreferencesViewController () <ABPeoplePickerNavigationControllerDelegate>
 {
@@ -41,6 +43,14 @@
     [super viewDidLoad];
 
     standard = [NSUserDefaults standardUserDefaults];
+    
+    CALayer * layer = [_setDefaultRecipientButton layer];
+    [layer setMasksToBounds:YES];
+    [layer setCornerRadius:16.0]; //when radius is 0, the border is a rectangle
+    [layer setBorderWidth:1.35];
+    [layer setBorderColor:[[UIColor colorWithRed:255/255.0f green:128/255.0f blue:0/255.0f alpha:1] CGColor]];
+    
+//    [standard setBool:NO forKey:@"recurringCalendarEventSet"]; // Yes = 1 in Objective-C
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -58,6 +68,7 @@
     {
     NSLog(@"Default recipient has NOT been set");
     }
+    [Flurry logEvent:@"User went to extras"];
 }
 
 
@@ -65,13 +76,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-- (IBAction)chooseDefaultRecipient:(id)sender
-{
-    ABPeoplePickerNavigationController *picker =
-    [[ABPeoplePickerNavigationController alloc] init];
-    picker.peoplePickerDelegate = self;
-    [self presentViewController:picker animated:YES completion:nil];
 }
 
 - (IBAction)submitText:(id)sender
@@ -81,6 +85,7 @@
                                       andSecret:@"xSDPS0gEKKTf8R142QuJlrR3VjPpqlAtAcWMw6R0Y"];
     
     [UserVoice presentUserVoiceInterfaceForParentViewController:self andConfig:config];
+    [Flurry logEvent:@"Uservoice engaged"];
 }
 
 #pragma mark populateLabelsFromUserDefaults
@@ -90,10 +95,12 @@
     // Check to see if the user has already set a default recipient.
     if ([standard objectForKey:@"Person"]) {
         NSString *person = [standard stringForKey:@"Person"];
+        [_setDefaultRecipientButton setTitle:@"Clear" forState:UIControlStateNormal];
         [_personLabel setText:person];
         NSLog(@"Person is %@", [standard stringForKey:@"Person"]);
     }
     else {
+    [_setDefaultRecipientButton setTitle:@"Set" forState:UIControlStateNormal];
     [_personLabel setText:@"No default recipient set."];
     }
     
@@ -107,12 +114,14 @@
 {
     // Check to see if the user has already set a recurring calendar event.
     BOOL recurringCalendarEventSet = [standard boolForKey:@"recurringCalendarEventSet"];
+    [_weeklyCalendarEventSwitch setOn:recurringCalendarEventSet];
+
     if ( recurringCalendarEventSet == YES ) {
-        [_weeklyCalendarEventStatusLabel setText:@"Calendar event already set."];
+        [_weeklyCalendarEventStatusLabel setText:@"A smoov calendar event has been set."];
         NSLog(@"Recurring calendar event bool is set to %d", [standard boolForKey:@"recurringCalendarEventSet"]);
     }
     else {
-    [_weeklyCalendarEventStatusLabel setText:@"No calendar event set."];
+    [_weeklyCalendarEventStatusLabel setText:@"Use your calendar to remember to be smoov."];
     NSLog(@"Recurring calendar event bool is set to %d", [standard boolForKey:@"recurringCalendarEventSet"]);
     }
 
@@ -122,12 +131,13 @@
 {
     // Check to see if the user has already set a reminder.
     BOOL reminderOn = [standard boolForKey:@"reminderOn"];
+    [_weeklyReminderSwitch setOn:reminderOn];
     if ( reminderOn == YES ) {
-        [_weeklyReminderStatusLabel setText:@"Reminder already set."];
+        [_weeklyReminderStatusLabel setText:@"A smoov reminder has been set."];
         NSLog(@"Reminder bool is set to %d", [standard boolForKey:@"reminderOn"]);
     }
     else {
-    [_weeklyReminderStatusLabel setText:@"No reminder set."];
+    [_weeklyReminderStatusLabel setText:@"User a reminder to remember to be smoov."];
     NSLog(@"Reminder bool is set to %d", [standard boolForKey:@"reminderOn"]);
     }
 }
@@ -191,75 +201,117 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-- (IBAction)clearPrimaryContact:(id)sender
+
+- (IBAction)chooseDefaultRecipient:(id)sender
 {
-    NSString* fullName = @"No default recipient";
-    NSString* mobile=NULL;
-    
-    [standard setValue:fullName forKey:@"Person"];
-    [standard setValue:mobile forKey:@"mobilePhoneNumber"];
-    [standard synchronize];
-    
-    [_personLabel setText:fullName];
+    // Check to see if the user has already set a default recipient.
+    if ([standard objectForKey:@"Person"]) {
+
+        [standard setValue:nil forKey:@"Person"];
+        [standard setValue:nil forKey:@"mobilePhoneNumber"];
+        [standard synchronize];
+        
+        [_personLabel setText:@"No default recipient"];        
+        [_setDefaultRecipientButton setTitle:@"Set" forState:UIControlStateNormal];
+        [Flurry logEvent:@"Default recipient cleared"];
+    }
+    else {
+        ABPeoplePickerNavigationController *picker =
+        [[ABPeoplePickerNavigationController alloc] init];
+        picker.peoplePickerDelegate = self;
+        [self presentViewController:picker animated:YES completion:nil];
+        [Flurry logEvent:@"Contact picker opened"];
+    }
 }
 
+- (IBAction)weeklyCalendarEventSwitch:(id)sender
+{
+    if(_weeklyCalendarEventSwitch.isOn) {
+        NSLog(@"User turned ON calendar event.");
+        if (_calendarEventStore == nil) {
+            _calendarEventStore = [[EKEventStore alloc]init];
+            [_calendarEventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+                if (!granted) {
+                    NSLog(@"Access to store not granted");
+                   [Flurry logEvent:@"Calendar access denied by user"];
+                }
+                else {
+                    [self performSelectorOnMainThread:@selector(createAndSaveCalendarEvent) withObject:nil waitUntilDone:YES];
+                }
+            }];
+        }
+    }
+    else {
+        [self showCalendarOffAlert];
+        [standard setBool:NO forKey:@"recurringCalendarEventSet"]; // Yes = 1 in Objective-C
+        [standard synchronize];
+        [_weeklyCalendarEventStatusLabel setText:@"Use your calendar to remember to be smoov."];
+        _calendarEventStore = nil;
+        NSLog(@"User turned OFF calendar event.");
+        [Flurry logEvent:@"Calendar event toggled off"];
+    }
+}
+
+// This was the original button-based weekly calendar event method
+/*
 - (IBAction)setWeeklyCalendarEvent:(id)sender
 {
     BOOL recurringCalendarEventSet = [standard boolForKey:@"recurringCalendarEventSet"];
     if ( recurringCalendarEventSet == NO ) {
-        
         if (_calendarEventStore == nil) {
             _calendarEventStore = [[EKEventStore alloc]init];
-                
             [_calendarEventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
                 if (!granted)
                 NSLog(@"Access to store not granted");
+                else {
+                    [self performSelectorOnMainThread:@selector(createAndSaveCalendarEvent) withObject:nil waitUntilDone:YES];
+                }
             }];
         }
-            
-        NSDate *endReminderDate = [self dateByAddingXDaysFromToday:365];
-        
-        EKRecurrenceRule *rule = [[EKRecurrenceRule alloc]
-                                  initRecurrenceWithFrequency:EKRecurrenceFrequencyWeekly
-                                  interval:1
-                                  end:[EKRecurrenceEnd recurrenceEndWithEndDate:endReminderDate]];
-        
-        EKEvent *myEvent = [EKEvent
-                            eventWithEventStore:self.calendarEventStore];
-        
-        myEvent.calendar = _calendarEventStore.defaultCalendarForNewEvents;
-        myEvent.title = @"Use smoov to message your lady bird something nice.";
-        myEvent.location = @"smoov on your phone";
-        NSDate *eventDate = [NSDate date];
-        myEvent.startDate = eventDate;
-        myEvent.endDate = eventDate;
-        myEvent.allDay = TRUE;
-        myEvent.availability = EKEventAvailabilityFree;
-        [myEvent addRecurrenceRule:rule];
-        
-        NSError *error = nil;
-        
-        BOOL success = [_calendarEventStore saveEvent:myEvent span:EKSpanFutureEvents error:&error];
-        
-        if(success){
-            NSLog(@"EVENT SAVED, %@",myEvent.eventIdentifier);
-            [standard setBool:YES forKey:@"recurringCalendarEventSet"]; // Yes = 1 in Objective-C
-            [standard synchronize];
-        }
-        
-        else{
-            NSLog(@"error = %@", error);
-        }
-        
-        [_weeklyCalendarEventStatusLabel setText:@"Calendar event set."];
-        
-        [self showCalendarSuccessAlert];
     }
-    else
+    else {
     [self showCalendarDupeAlert];
     NSLog(@"Don't let the user set the recurring calendar twice");
+    }
+}
+*/
+
+- (void)createAndSaveCalendarEvent
+{
+    NSDate *endReminderDate = [self dateByAddingXDaysFromToday:365];
+    EKRecurrenceRule *rule = [[EKRecurrenceRule alloc]
+                              initRecurrenceWithFrequency:EKRecurrenceFrequencyWeekly
+                              interval:1
+                              end:[EKRecurrenceEnd recurrenceEndWithEndDate:endReminderDate]];
+    EKEvent *myEvent = [EKEvent
+                        eventWithEventStore:self.calendarEventStore];
+    myEvent.calendar = _calendarEventStore.defaultCalendarForNewEvents;
+    myEvent.title = @"Be smoov: message your lady bird some nice words.";
+    myEvent.location = @"Be smoov on your phone";
+    NSDate *eventDate = [NSDate date];
+    myEvent.startDate = eventDate;
+    myEvent.endDate = eventDate;
+    myEvent.allDay = TRUE;
+    myEvent.availability = EKEventAvailabilityFree;
+    [myEvent addRecurrenceRule:rule];
+    NSError *error = nil;
+    BOOL success = [_calendarEventStore saveEvent:myEvent span:EKSpanFutureEvents error:&error];
+    if(success){
+        NSLog(@"EVENT SAVED, %@",myEvent.eventIdentifier);
+        [standard setBool:YES forKey:@"recurringCalendarEventSet"]; // Yes = 1 in Objective-C
+        [self showCalendarSuccessAlert];
+        [_weeklyCalendarEventStatusLabel setText:@"A smoov calendar event has been set."];
+        [Flurry logEvent:@"Calendar event added"];
+    }
+    else{
+        NSLog(@"error = %@", error);
+        [Flurry logEvent:@"Calendar event failed to save"];
+    }
+    [standard synchronize];
 }
 
+// This was the original button-based weekly reminder method
+/*
 - (IBAction)setWeeklyReminder:(id)sender
 {
     
@@ -274,49 +326,88 @@
                 
                 if (!granted)
                     NSLog(@"Access to store not granted");
+                else {
+                    [self performSelectorOnMainThread:@selector(createAndSaveReminder) withObject:nil waitUntilDone:YES];
+                }
             }];
         }
-        
-        NSDate *endReminderDate = [self dateByAddingXDaysFromToday:365];
-        
-        EKRecurrenceRule *rule = [[EKRecurrenceRule alloc]
-                                  initRecurrenceWithFrequency:EKRecurrenceFrequencyWeekly
-                                  interval:1
-                                  end:[EKRecurrenceEnd recurrenceEndWithEndDate:endReminderDate]];
-        
-        EKReminder *myReminder = [EKReminder
-                            reminderWithEventStore:self.reminderEventStore];
-
-        [myReminder setCalendar:[_reminderEventStore defaultCalendarForNewReminders]];
-        myReminder.title = @"Use smoov to message your lady bird something nice.";
-        [myReminder addRecurrenceRule:rule];
-        
-        myReminder.priority = 9; // this will put a single exclamation point priorty on the reminder.
-        
-        
-        NSCalendar *gregorian = [[NSCalendar alloc]
-                                 initWithCalendarIdentifier:NSGregorianCalendar];
-        
-        NSDateComponents *components = [gregorian components:( NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit ) fromDate:endReminderDate];
-        
-        myReminder.dueDateComponents = components;
-        
-        NSError *error = nil;
-        
-        BOOL success = [_reminderEventStore saveReminder:myReminder commit:YES error:&error];
-        
-        if(!success){
-            NSLog(@"error = %@", error);
-        }
-        [standard setBool:YES forKey:@"reminderOn"]; // Yes = 1 in Objective-C
-        [standard synchronize];
-        [_weeklyReminderStatusLabel setText:@"Reminder set."];
-        [self showReminderSuccessAlert];
-
     }
     else {
-    NSLog(@"Don't let the user set the recurring calendar twice");
+    NSLog(@"Don't let the user set the reminder twice");
     [self showReminderDupeAlert];
+    }
+}
+*/
+
+- (IBAction)weeklyReminderSwitch:(id)sender
+{
+    if(_weeklyReminderSwitch.isOn) {
+        NSLog(@"User turned ON reminder.");
+        if (_reminderEventStore == nil) {
+            _reminderEventStore = [[EKEventStore alloc]init];
+            [_reminderEventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
+                if (!granted) {
+                    NSLog(@"Access to store not granted");
+                    [Flurry logEvent:@"Reminder access denied by user"];
+                }
+                else {
+                    [self performSelectorOnMainThread:@selector(createAndSaveReminder) withObject:nil waitUntilDone:YES];
+                }
+            }];
+        }
+    }
+    else {
+        [self showReminderOffAlert];
+        [standard setBool:NO forKey:@"reminderOn"]; // Yes = 1 in Objective-C
+        [standard synchronize];
+        [_weeklyReminderStatusLabel setText:@"Use a reminder to remember to be smoov."];
+        _reminderEventStore = nil;
+        NSLog(@"User turned OFF reminder.");
+        [Flurry logEvent:@"Reminder toggled off"];
+    }
+}
+
+             
+-(void)createAndSaveReminder
+{
+    NSDate *endReminderDate = [self dateByAddingXDaysFromToday:365];
+    
+    EKRecurrenceRule *rule = [[EKRecurrenceRule alloc]
+                              initRecurrenceWithFrequency:EKRecurrenceFrequencyWeekly
+                              interval:1
+                              end:[EKRecurrenceEnd recurrenceEndWithEndDate:endReminderDate]];
+    
+    EKReminder *myReminder = [EKReminder
+                              reminderWithEventStore:self.reminderEventStore];
+    
+    [myReminder setCalendar:[_reminderEventStore defaultCalendarForNewReminders]];
+    myReminder.title = @"Use smoov to message your lady bird something nice.";
+    [myReminder addRecurrenceRule:rule];
+    
+    myReminder.priority = 9; // this will put a single exclamation point priorty on the reminder.
+    
+    
+    NSCalendar *gregorian = [[NSCalendar alloc]
+                             initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    NSDateComponents *components = [gregorian components:( NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit ) fromDate:endReminderDate];
+    
+    myReminder.dueDateComponents = components;
+    
+    NSError *error = nil;
+    
+    BOOL success = [_reminderEventStore saveReminder:myReminder commit:YES error:&error];
+    
+    if(!success){
+        NSLog(@"error = %@", error);
+        [Flurry logEvent:@"Reminder failed to save"];
+    }
+    else {
+    [standard setBool:YES forKey:@"reminderOn"]; // Yes = 1 in Objective-C
+    [standard synchronize];
+    [self showReminderSuccessAlert];
+    [_weeklyReminderStatusLabel setText:@"A smoov reminder has been set."];
+    [Flurry logEvent:@"Reminder added"];
     }
 }
 
@@ -348,6 +439,16 @@
     [alert show];
 }
 
+-(void) showCalendarOffAlert
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Stay smoov."
+                                                    message:[NSString stringWithFormat:@"To remove your smoov calendar event, simply delete it from your calendar."]
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
 
 -(void) showReminderSuccessAlert
 {
@@ -369,6 +470,15 @@
     [alert show];
 }
 
+-(void) showReminderOffAlert
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Stay smoov."
+                                                    message:[NSString stringWithFormat:@"To remove your smoov reminder, simply delete it from your reminders list."]
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
 
 
 @end
