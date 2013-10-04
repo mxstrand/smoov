@@ -440,8 +440,8 @@
 				65A047DE17FE4671001333FD /* MXSLuckyViewController.h */,
 				65A047DB17FE4671001333FD /* MXSSorryViewController.m */,
 				65A047DF17FE4671001333FD /* MXSSorryViewController.h */,
-				65FA291517ED0B5D00C7B96E /* MXSFlirtViewController.h */,
 				65FA291617ED0B5D00C7B96E /* MXSFlirtViewController.m */,
+				65FA291517ED0B5D00C7B96E /* MXSFlirtViewController.h */,
 				65A047D517FE4242001333FD /* MXSRomanticViewController.m */,
 				65A047D617FE4242001333FD /* MXSRomanticViewController.h */,
 			);

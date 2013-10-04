@@ -17,40 +17,55 @@
     NSLog(@"messages being loaded");
     
     MXSMessage *message = [MXSMessage new];
-    message.content = @"I'm thinking about running for president. Wanna be VP or first lady?";
+    message.content = @"I've been thinking about our discussion and you were totally right.";
     message.popularityImage = 5;
     [messages addObject:message];
     
     message = [MXSMessage new];
-    message.content = @"If I thought my friends wouldn't kill me, I'd ditch them and come be with you.";
+    message.content = @"I was dropped a lot as a baby. That must explain why I did that. Sorry.";
     message.popularityImage = 2;
     [messages addObject:message];
     
     message = [MXSMessage new];
-    message.content = @"I need some new clothes. What stores do you like for guys?";
+    message.content = @"I'm going to invent a new word....sorryouweright.";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"How often do you go to the gym anyway - you look great.";
+    message.content = @"bnb";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"I'm thinking about running for president. Wanna be VP or first lady?";
+    message.content = @"Sorry 5";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"I'm thinking about running for president. Wanna be VP or first lady?";
+    message.content = @"Sorry 6";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"What are you going to be for Halloween?";
+    message.content = @"Sorry 7";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
+    message = [MXSMessage new];
+    message.content = @"Sorry 5";
     message.popularityImage = 3;
     [messages addObject:message];
     
+    message = [MXSMessage new];
+    message.content = @"Sorry 6";
+    message.popularityImage = 3;
+    [messages addObject:message];
+    
+    message = [MXSMessage new];
+    message.content = @"Sorry 7";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
 }
 
 @end

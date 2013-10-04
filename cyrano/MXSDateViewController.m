@@ -17,37 +17,52 @@
     NSLog(@"messages being loaded");
     
     MXSMessage *message = [MXSMessage new];
-    message.content = @"I'm thinking about running for president. Wanna be VP or first lady?";
+    message.content = @"When's our next rendezvous?";
     message.popularityImage = 5;
     [messages addObject:message];
     
     message = [MXSMessage new];
-    message.content = @"If I thought my friends wouldn't kill me, I'd ditch them and come be with you.";
+    message.content = @"Do you know any good happy hours?";
     message.popularityImage = 2;
     [messages addObject:message];
     
+    message = [MXSMessage new];
+    message.content = @"What sounds more fun...ice skating or ice hockey?";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
+    message = [MXSMessage new];
+    message.content = @"Are you a sushi or fish-n-chips person?";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
+    message = [MXSMessage new];
+    message.content = @"I'm thinking of getting tickets to a game. Interested?";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
     message = [MXSMessage new];
     message.content = @"I need some new clothes. What stores do you like for guys?";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"How often do you go to the gym anyway - you look great.";
+    message.content = @"I need to pick out a halloween costume. Will you help?";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"I'm thinking about running for president. Wanna be VP or first lady?";
+    message.content = @"I've been wanting to learn to cook. Can you teach me?";
     message.popularityImage = 3;
     [messages addObject:message];
-
+    
     message = [MXSMessage new];
-    message.content = @"I'm thinking about running for president. Wanna be VP or first lady?";
+    message.content = @"Date 6";
     message.popularityImage = 3;
     [messages addObject:message];
-
+    
     message = [MXSMessage new];
-    message.content = @"What are you going to be for Halloween?";
+    message.content = @"Date 7";
     message.popularityImage = 3;
     [messages addObject:message];
     

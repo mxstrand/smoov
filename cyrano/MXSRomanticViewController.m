@@ -17,40 +17,55 @@
     NSLog(@"messages being loaded");
     
     MXSMessage *message = [MXSMessage new];
-    message.content = @"I'm thinking about running for president. Wanna be VP or first lady?";
+    message.content = @"I thought you looked really pretty this morning.";
     message.popularityImage = 5;
     [messages addObject:message];
     
     message = [MXSMessage new];
-    message.content = @"If I thought my friends wouldn't kill me, I'd ditch them and come be with you.";
+    message.content = @"I'm really excited to spend some time together after work.";
     message.popularityImage = 2;
     [messages addObject:message];
     
     message = [MXSMessage new];
-    message.content = @"I need some new clothes. What stores do you like for guys?";
+    message.content = @"Thanks for everything you do around the house.";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"How often do you go to the gym anyway - you look great.";
+    message.content = @"Hey, what's your favorite flower? I just want to know.";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"I'm thinking about running for president. Wanna be VP or first lady?";
+    message.content = @"When friends tell me about their relationships, I feel lucky to be with you.";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"I'm thinking about running for president. Wanna be VP or first lady?";
+    message.content = @"This you-and-me thing is really going well.";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"What are you going to be for Halloween?";
+    message.content = @"Living with you is living the dream.";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
+    message = [MXSMessage new];
+    message.content = @"We should hold hands more.";
     message.popularityImage = 3;
     [messages addObject:message];
     
+    message = [MXSMessage new];
+    message.content = @"Romantic 6";
+    message.popularityImage = 3;
+    [messages addObject:message];
+    
+    message = [MXSMessage new];
+    message.content = @"Romantic 7";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
 }
 
 @end

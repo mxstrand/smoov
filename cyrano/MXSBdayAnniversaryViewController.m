@@ -17,39 +17,55 @@
     NSLog(@"messages being loaded");
     
     MXSMessage *message = [MXSMessage new];
-    message.content = @"I'm thinking about running for president. Wanna be VP or first lady?";
+    message.content = @"Birthday 1";
     message.popularityImage = 5;
     [messages addObject:message];
     
     message = [MXSMessage new];
-    message.content = @"If I thought my friends wouldn't kill me, I'd ditch them and come be with you.";
+    message.content = @"Anniversary 1";
     message.popularityImage = 2;
     [messages addObject:message];
     
     message = [MXSMessage new];
-    message.content = @"I need some new clothes. What stores do you like for guys?";
+    message.content = @"hjhmn.";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"How often do you go to the gym anyway - you look great.";
+    message.content = @"What a.";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"I'm thinking about running for president. Wanna be VP or first lady?";
+    message.content = @"Birthday 2";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"I'm thinking about running for president. Wanna be VP or first lady?";
+    message.content = @"Anniversary 2";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"What are you going to be for Halloween?";
+    message.content = @"Holiday 1";
     message.popularityImage = 3;
     [messages addObject:message];
+
+    message = [MXSMessage new];
+    message.content = @"Birthday 2";
+    message.popularityImage = 3;
+    [messages addObject:message];
+    
+    message = [MXSMessage new];
+    message.content = @"Anniversary 2";
+    message.popularityImage = 3;
+    [messages addObject:message];
+    
+    message = [MXSMessage new];
+    message.content = @"Holiday 1";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
     
 }
 

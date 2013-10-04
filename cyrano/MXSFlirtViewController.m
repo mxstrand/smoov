@@ -9,6 +9,10 @@
 #import "MXSFlirtViewController.h"
 #import "MXSMessage.h"
 
+@interface MXSFlirtViewController ()
+
+@end
+
 @implementation MXSFlirtViewController
 
 - (void) loadMessages
@@ -22,35 +26,61 @@
     [messages addObject:message];
     
     message = [MXSMessage new];
-    message.content = @"If I thought my friends wouldn't kill me, I'd ditch them and come be with you.";
+    message.content = @"If my friends wouldn't kill me, I'd ditch them to come be with you.";
     message.popularityImage = 2;
     [messages addObject:message];
     
     message = [MXSMessage new];
-    message.content = @"I need some new clothes. What stores do you like for guys?";
+    message.content = @"ab";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"How often do you go to the gym anyway - you look great.";
+    message.content = @"How often do you go to the gym - you look great.";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"I'm thinking about running for president. Wanna be VP or first lady?";
+    message.content = @"If I won the lottery, I'd buy you a house to hold all the purses I would buy you.";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"I'm thinking about running for president. Wanna be VP or first lady?";
+    message.content = @"I bet you are going to do awesome at work today.";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"What are you going to be for Halloween?";
+    message.content = @"Flirt";
     message.popularityImage = 3;
     [messages addObject:message];
-    
+
+    message = [MXSMessage new];
+    message.content = @"Flirt";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
+    message = [MXSMessage new];
+    message.content = @"Flirt";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
+    message = [MXSMessage new];
+    message.content = @"Flirt";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
+    message = [MXSMessage new];
+    message.content = @"Flirt";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
+    message = [MXSMessage new];
+    message.content = @"Flirt";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
 }
+
 
 @end
