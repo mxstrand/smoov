@@ -19,13 +19,13 @@ static id theNavController = nil;
                                                                     delegate:nil
                                                            cancelButtonTitle:@"Cancel"
                                                       destructiveButtonTitle:nil
-                                                           otherButtonTitles:@"Flirt / Funny",
+                                                           otherButtonTitles:@"Flirt + Funny",
                                          @"Get a Date",
-                                         @"Birthday / Anniversary",
+                                         @"BDay + Anniversary + Holiday",
                                          @"Romantic",
                                          @"Get Lucky",
-                                         @"Most Popular",
-                                         @"I'm Sorry", nil];
+                                         @"I'm Sorry",
+                                         @"Most Popular", nil];
     displayImageOption.delegate = displayImageOption;
     [displayImageOption setOpaque:YES];
     
@@ -52,10 +52,10 @@ static id theNavController = nil;
         [self gotoGetLucky];
     }
     if(buttonIndex == 5){
-        [theNavController popToRootViewControllerAnimated:YES];
+        [self gotoImSorry];
     }
     if(buttonIndex == 6){
-        [self gotoImSorry];
+        [theNavController popToRootViewControllerAnimated:YES];
     }
 }
 
@@ -74,26 +74,65 @@ static id theNavController = nil;
 
 - (void)gotoBirthdayAnniversary
 {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //The name "Main_iPhone" is the filename of your storyboard (without the extension).
     
+    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MXSBdayAnniversaryViewController"];
+    // push to current navigation controller, from any view controller
+    
+    [theNavController pushViewController:vc animated:YES];
+    //The view controller's identifier has to be set as the "Storyboard ID" in the Identity Inspector.
+
 }
 
 - (void)gotoGetADate
 {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //The name "Main_iPhone" is the filename of your storyboard (without the extension).
     
+    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MXSDateViewController"];
+    // push to current navigation controller, from any view controller
+    
+    [theNavController pushViewController:vc animated:YES];
+    //The view controller's identifier has to be set as the "Storyboard ID" in the Identity Inspector.
+
 }
 
 - (void)gotoRomantic
 {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //The name "Main_iPhone" is the filename of your storyboard (without the extension).
+    
+    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MXSRomanticViewController"];
+    // push to current navigation controller, from any view controller
+    
+    [theNavController pushViewController:vc animated:YES];
+    //The view controller's identifier has to be set as the "Storyboard ID" in the Identity Inspector.
 }
 
 - (void)gotoGetLucky
 {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //The name "Main_iPhone" is the filename of your storyboard (without the extension).
     
+    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MXSLuckyViewController"];
+    // push to current navigation controller, from any view controller
+    
+    [theNavController pushViewController:vc animated:YES];
+    //The view controller's identifier has to be set as the "Storyboard ID" in the Identity Inspector.
 }
 
 - (void)gotoImSorry
 {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //The name "Main_iPhone" is the filename of your storyboard (without the extension).
     
+    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MXSSorryViewController"];
+    // push to current navigation controller, from any view controller
+    
+    [theNavController pushViewController:vc animated:YES];
+    //The view controller's identifier has to be set as the "Storyboard ID" in the Identity Inspector.
+
 }
 
 

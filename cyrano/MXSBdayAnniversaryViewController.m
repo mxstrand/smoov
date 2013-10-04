@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Michael Strand. All rights reserved.
 //
 
-#import "MXSFlirtViewController.h"
+#import "MXSBdayAnniversaryViewController.h"
 #import "MXSMessage.h"
 
-@implementation MXSFlirtViewController
+@implementation MXSBdayAnniversaryViewController
 
 - (void) loadMessages
 {

@@ -14,6 +14,37 @@
 -(void) populateWithMessage:(MXSMessage*)messagex
 {
     self->message.text = messagex.content;
+    
+    visualPopularityImage.image = [self imageForPopularity:messagex.popularityImage];
+    
 }
+
+- (UIImage *)imageForPopularity:(CGFloat)popularity
+{
+    //    NSLog(@"Magnitude is: %f", magnitude);
+    UIImage *popularityImage = nil;
+    
+    if (popularity <= 1) {
+		popularityImage = [UIImage imageNamed:@"1star"];
+	}
+    else if (popularity >= 1.1 && popularity <= 2) {
+		popularityImage = [UIImage imageNamed:@"2star"];
+	}
+    
+    else if (popularity >= 2.1 && popularity <= 3) {
+		popularityImage = [UIImage imageNamed:@"3star"];
+	}
+    
+    else if (popularity >= 3.1 && popularity <= 4) {
+		popularityImage = [UIImage imageNamed:@"4star"];
+	}
+    
+    else {
+		popularityImage = [UIImage imageNamed:@"5star"];
+	}
+    
+	return popularityImage;
+}
+
 
 @end

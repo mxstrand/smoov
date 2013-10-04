@@ -7,10 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
 
-@interface MXSMainViewController : UIViewController
+@interface MXSMainViewController : UIViewController <ADBannerViewDelegate>
+{
+    NSMutableArray *messages;
+    NSUserDefaults *standard; //supports abbreviated code in NSUserDefaults code references.
+}
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
+
+@property (nonatomic, strong) IBOutlet ADBannerView *banner;
+
+@property (nonatomic, strong) IBOutlet UIImageView *logo;
 
 - (void)showSMS:(NSString*)message;
 

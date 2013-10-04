@@ -23,5 +23,8 @@
 
 @property (nonatomic, weak) IBOutlet UIButton *setDefaultRecipientButton;
 
+@property (nonatomic, weak) IBOutlet UIButton *contactUsButton;
+
+@property (nonatomic, weak) IBOutlet UIButton *shareWithUsButton;
 
 @end

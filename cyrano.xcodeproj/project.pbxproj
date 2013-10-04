@@ -11,6 +11,11 @@
 		6509100217F4B4490054DC04 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6509100117F4B4480054DC04 /* EventKit.framework */; };
 		650A9C4617FB6F6E00D4B9C4 /* UIActionSheet+MessageCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 650A9C4517FB6F6E00D4B9C4 /* UIActionSheet+MessageCategory.m */; };
 		6558549A17F23E5100A8B596 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6558549917F23E5100A8B596 /* iAd.framework */; };
+		65A047D717FE4242001333FD /* MXSRomanticViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A047D517FE4242001333FD /* MXSRomanticViewController.m */; };
+		65A047E017FE4671001333FD /* MXSBdayAnniversaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A047D817FE4671001333FD /* MXSBdayAnniversaryViewController.m */; };
+		65A047E117FE4671001333FD /* MXSDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A047D917FE4671001333FD /* MXSDateViewController.m */; };
+		65A047E217FE4671001333FD /* MXSLuckyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A047DA17FE4671001333FD /* MXSLuckyViewController.m */; };
+		65A047E317FE4671001333FD /* MXSSorryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A047DB17FE4671001333FD /* MXSSorryViewController.m */; };
 		65D944E817ECEC3A0081E073 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D944E717ECEC3A0081E073 /* Foundation.framework */; };
 		65D944EA17ECEC3A0081E073 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D944E917ECEC3A0081E073 /* CoreGraphics.framework */; };
 		65D944EC17ECEC3A0081E073 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D944EB17ECEC3A0081E073 /* UIKit.framework */; };
@@ -18,7 +23,6 @@
 		65D944F417ECEC3A0081E073 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D944F317ECEC3A0081E073 /* main.m */; };
 		65D944F817ECEC3A0081E073 /* MXSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D944F717ECEC3A0081E073 /* MXSAppDelegate.m */; };
 		65D944FE17ECEC3A0081E073 /* MXSMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D944FD17ECEC3A0081E073 /* MXSMainViewController.m */; };
-		65D9450017ECEC3A0081E073 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65D944FF17ECEC3A0081E073 /* Images.xcassets */; };
 		65D9450717ECEC3A0081E073 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D9450617ECEC3A0081E073 /* XCTest.framework */; };
 		65D9450817ECEC3A0081E073 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D944E717ECEC3A0081E073 /* Foundation.framework */; };
 		65D9450917ECEC3A0081E073 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D944EB17ECEC3A0081E073 /* UIKit.framework */; };
@@ -175,6 +179,7 @@
 		65E98DD317FCEA99000EEF0B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E98DD217FCEA99000EEF0B /* SystemConfiguration.framework */; };
 		65E98DD517FCEAA9000EEF0B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E98DD417FCEAA9000EEF0B /* Security.framework */; };
 		65E98DD717FCEABD000EEF0B /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E98DD617FCEABD000EEF0B /* AdSupport.framework */; };
+		65ED052717FDF11F007668C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65ED052617FDF11F007668C0 /* Images.xcassets */; };
 		65FA291417ED0B1E00C7B96E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65FA291217ED0B1E00C7B96E /* Main.storyboard */; };
 		65FA291717ED0B5D00C7B96E /* MXSFlirtViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FA291617ED0B5D00C7B96E /* MXSFlirtViewController.m */; };
 		65FA291C17ED0F5800C7B96E /* MXSMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FA291B17ED0F5800C7B96E /* MXSMessageCell.m */; };
@@ -199,6 +204,16 @@
 		650A9C4417FB6F6E00D4B9C4 /* UIActionSheet+MessageCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+MessageCategory.h"; sourceTree = "<group>"; };
 		650A9C4517FB6F6E00D4B9C4 /* UIActionSheet+MessageCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+MessageCategory.m"; sourceTree = "<group>"; };
 		6558549917F23E5100A8B596 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		65A047D517FE4242001333FD /* MXSRomanticViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXSRomanticViewController.m; sourceTree = "<group>"; };
+		65A047D617FE4242001333FD /* MXSRomanticViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXSRomanticViewController.h; sourceTree = "<group>"; };
+		65A047D817FE4671001333FD /* MXSBdayAnniversaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXSBdayAnniversaryViewController.m; sourceTree = "<group>"; };
+		65A047D917FE4671001333FD /* MXSDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXSDateViewController.m; sourceTree = "<group>"; };
+		65A047DA17FE4671001333FD /* MXSLuckyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXSLuckyViewController.m; sourceTree = "<group>"; };
+		65A047DB17FE4671001333FD /* MXSSorryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXSSorryViewController.m; sourceTree = "<group>"; };
+		65A047DC17FE4671001333FD /* MXSBdayAnniversaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXSBdayAnniversaryViewController.h; sourceTree = "<group>"; };
+		65A047DD17FE4671001333FD /* MXSDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXSDateViewController.h; sourceTree = "<group>"; };
+		65A047DE17FE4671001333FD /* MXSLuckyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXSLuckyViewController.h; sourceTree = "<group>"; };
+		65A047DF17FE4671001333FD /* MXSSorryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXSSorryViewController.h; sourceTree = "<group>"; };
 		65D944E417ECEC3A0081E073 /* cyrano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cyrano.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D944E717ECEC3A0081E073 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		65D944E917ECEC3A0081E073 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -211,7 +226,6 @@
 		65D944F717ECEC3A0081E073 /* MXSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MXSAppDelegate.m; sourceTree = "<group>"; };
 		65D944FC17ECEC3A0081E073 /* MXSMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MXSMainViewController.h; sourceTree = "<group>"; };
 		65D944FD17ECEC3A0081E073 /* MXSMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MXSMainViewController.m; sourceTree = "<group>"; };
-		65D944FF17ECEC3A0081E073 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		65D9450517ECEC3A0081E073 /* cyranoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cyranoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D9450617ECEC3A0081E073 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		65D9450E17ECEC3A0081E073 /* cyranoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "cyranoTests-Info.plist"; sourceTree = "<group>"; };
@@ -372,6 +386,7 @@
 		65E98DD217FCEA99000EEF0B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		65E98DD417FCEAA9000EEF0B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		65E98DD617FCEABD000EEF0B /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		65ED052617FDF11F007668C0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		65FA291317ED0B1E00C7B96E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		65FA291517ED0B5D00C7B96E /* MXSFlirtViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXSFlirtViewController.h; sourceTree = "<group>"; };
 		65FA291617ED0B5D00C7B96E /* MXSFlirtViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXSFlirtViewController.m; sourceTree = "<group>"; };
@@ -414,6 +429,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		65A047E417FE46A9001333FD /* ChildrenOfMainControllers */ = {
+			isa = PBXGroup;
+			children = (
+				65A047D817FE4671001333FD /* MXSBdayAnniversaryViewController.m */,
+				65A047DC17FE4671001333FD /* MXSBdayAnniversaryViewController.h */,
+				65A047D917FE4671001333FD /* MXSDateViewController.m */,
+				65A047DD17FE4671001333FD /* MXSDateViewController.h */,
+				65A047DA17FE4671001333FD /* MXSLuckyViewController.m */,
+				65A047DE17FE4671001333FD /* MXSLuckyViewController.h */,
+				65A047DB17FE4671001333FD /* MXSSorryViewController.m */,
+				65A047DF17FE4671001333FD /* MXSSorryViewController.h */,
+				65FA291517ED0B5D00C7B96E /* MXSFlirtViewController.h */,
+				65FA291617ED0B5D00C7B96E /* MXSFlirtViewController.m */,
+				65A047D517FE4242001333FD /* MXSRomanticViewController.m */,
+				65A047D617FE4242001333FD /* MXSRomanticViewController.h */,
+			);
+			name = ChildrenOfMainControllers;
+			sourceTree = "<group>";
+		};
 		65D944DB17ECEC3A0081E073 = {
 			isa = PBXGroup;
 			children = (
@@ -464,15 +498,14 @@
 				65D944F717ECEC3A0081E073 /* MXSAppDelegate.m */,
 				65D944FC17ECEC3A0081E073 /* MXSMainViewController.h */,
 				65D944FD17ECEC3A0081E073 /* MXSMainViewController.m */,
+				65A047E417FE46A9001333FD /* ChildrenOfMainControllers */,
 				650A9C4417FB6F6E00D4B9C4 /* UIActionSheet+MessageCategory.h */,
 				650A9C4517FB6F6E00D4B9C4 /* UIActionSheet+MessageCategory.m */,
 				65FA291A17ED0F5800C7B96E /* MXSMessageCell.h */,
 				65FA291B17ED0F5800C7B96E /* MXSMessageCell.m */,
-				65FA291517ED0B5D00C7B96E /* MXSFlirtViewController.h */,
-				65FA291617ED0B5D00C7B96E /* MXSFlirtViewController.m */,
 				65D9452217ED06770081E073 /* MXSMessage.h */,
 				65D9452317ED06770081E073 /* MXSMessage.m */,
-				65D944FF17ECEC3A0081E073 /* Images.xcassets */,
+				65ED052617FDF11F007668C0 /* Images.xcassets */,
 				65D944EE17ECEC3A0081E073 /* Supporting Files */,
 			);
 			path = cyrano;
@@ -802,7 +835,6 @@
 				65E98D5F17FCEA27000EEF0B /* ftv2lastnode.png in Resources */,
 				65E98D9F17FCEA27000EEF0B /* functions_63.html in Resources */,
 				65E98DBE17FCEA27000EEF0B /* sync_off.png in Resources */,
-				65D9450017ECEC3A0081E073 /* Images.xcassets in Resources */,
 				65E98D6017FCEA27000EEF0B /* ftv2link.png in Resources */,
 				65E98D6117FCEA27000EEF0B /* ftv2mlastnode.png in Resources */,
 				65E98D6517FCEA27000EEF0B /* ftv2ns.png in Resources */,
@@ -842,6 +874,7 @@
 				65E98D6217FCEA27000EEF0B /* ftv2mnode.png in Resources */,
 				65E98D7417FCEA27000EEF0B /* nav_h.png in Resources */,
 				65E98DC017FCEA27000EEF0B /* tab_a.png in Resources */,
+				65ED052717FDF11F007668C0 /* Images.xcassets in Resources */,
 				65E98D9B17FCEA27000EEF0B /* functions_5f.html in Resources */,
 				65E98D5D17FCEA27000EEF0B /* ftv2folderclosed.png in Resources */,
 				65E98D7017FCEA27000EEF0B /* interface_flurry_ads.html in Resources */,
@@ -962,14 +995,18 @@
 				65E98D7D17FCEA27000EEF0B /* resize.js in Sources */,
 				65E98D8317FCEA27000EEF0B /* all_63.js in Sources */,
 				65D9452417ED06770081E073 /* MXSMessage.m in Sources */,
+				65A047E217FE4671001333FD /* MXSLuckyViewController.m in Sources */,
 				65E98D9517FCEA27000EEF0B /* all_73.js in Sources */,
 				65D944F417ECEC3A0081E073 /* main.m in Sources */,
 				65E98DBA17FCEA27000EEF0B /* search.js in Sources */,
 				65E98DA217FCEA27000EEF0B /* functions_64.js in Sources */,
+				65A047E317FE4671001333FD /* MXSSorryViewController.m in Sources */,
 				65E98DA617FCEA27000EEF0B /* functions_66.js in Sources */,
 				65D944FE17ECEC3A0081E073 /* MXSMainViewController.m in Sources */,
 				65E98D7717FCEA27000EEF0B /* navtreeindex0.js in Sources */,
+				65A047D717FE4242001333FD /* MXSRomanticViewController.m in Sources */,
 				65E98D6D17FCEA27000EEF0B /* hierarchy.js in Sources */,
+				65A047E117FE4671001333FD /* MXSDateViewController.m in Sources */,
 				65E98D8F17FCEA27000EEF0B /* all_6c.js in Sources */,
 				65E98D5717FCEA27000EEF0B /* dynsections.js in Sources */,
 				65E98D7F17FCEA27000EEF0B /* all_5f.js in Sources */,
@@ -983,6 +1020,7 @@
 				65E98D8D17FCEA27000EEF0B /* all_69.js in Sources */,
 				65E98D8717FCEA27000EEF0B /* all_65.js in Sources */,
 				65E98D9317FCEA27000EEF0B /* all_72.js in Sources */,
+				65A047E017FE4671001333FD /* MXSBdayAnniversaryViewController.m in Sources */,
 				65E98D7C17FCEA27000EEF0B /* protocol_flurry_ad_delegate-p.js in Sources */,
 				65E98D8517FCEA27000EEF0B /* all_64.js in Sources */,
 				65E98D8917FCEA27000EEF0B /* all_66.js in Sources */,

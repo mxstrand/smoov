@@ -15,6 +15,7 @@
 
 {
     IBOutlet UILabel *message;
+    IBOutlet UIImageView *visualPopularityImage;
 }
 
 -(void) populateWithMessage:(MXSMessage*)message;

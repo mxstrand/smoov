@@ -49,6 +49,20 @@
     [layer setCornerRadius:16.0]; //when radius is 0, the border is a rectangle
     [layer setBorderWidth:1.35];
     [layer setBorderColor:[[UIColor colorWithRed:255/255.0f green:128/255.0f blue:0/255.0f alpha:1] CGColor]];
+
+    CALayer * layer2 = [_contactUsButton layer];
+    [layer2 setMasksToBounds:YES];
+    [layer2 setCornerRadius:16.0]; //when radius is 0, the border is a rectangle
+    [layer2 setBorderWidth:1.35];
+    [layer2 setBorderColor:[[UIColor colorWithRed:255/255.0f green:128/255.0f blue:0/255.0f alpha:1] CGColor]];
+
+    CALayer * layer3 = [_shareWithUsButton layer];
+    [layer3 setMasksToBounds:YES];
+    [layer3 setCornerRadius:16.0]; //when radius is 0, the border is a rectangle
+    [layer3 setBorderWidth:1.35];
+    [layer3 setBorderColor:[[UIColor colorWithRed:255/255.0f green:128/255.0f blue:0/255.0f alpha:1] CGColor]];
+
+    
     
 //    [standard setBool:NO forKey:@"recurringCalendarEventSet"]; // Yes = 1 in Objective-C
 }
@@ -78,8 +92,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)submitText:(id)sender
-{
+- (IBAction)contactUs:(id)sender {
     UVConfig *config = [UVConfig configWithSite:@"smoov.uservoice.com"
                                          andKey:@"jXrGUkCby9YjzgTsoKIA"
                                       andSecret:@"xSDPS0gEKKTf8R142QuJlrR3VjPpqlAtAcWMw6R0Y"];
