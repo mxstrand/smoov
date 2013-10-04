@@ -31,7 +31,7 @@
     [messages addObject:message];
     
     message = [MXSMessage new];
-    message.content = @"ab";
+    message.content = @"Let's reenact the scene in Armageddon where A.J. prances an Animal Cracker on Grace’s belly";
     message.popularityImage = 3;
     [messages addObject:message];
 

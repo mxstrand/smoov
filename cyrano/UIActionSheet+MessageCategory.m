@@ -21,7 +21,7 @@ static id theNavController = nil;
                                                       destructiveButtonTitle:nil
                                                            otherButtonTitles:@"Flirt + Funny",
                                          @"Get a Date",
-                                         @"BDay + Anniversary + Holiday",
+//                                         @"BDay + Anniversary + Holiday",
                                          @"Romantic",
                                          @"Get Lucky",
                                          @"I'm Sorry",
@@ -42,19 +42,19 @@ static id theNavController = nil;
     if(buttonIndex == 1){
         [self gotoGetADate];
     }
+//    if(buttonIndex == 2){
+//        [self gotoBirthdayAnniversary];
+//    }
     if(buttonIndex == 2){
-        [self gotoBirthdayAnniversary];
-    }
-    if(buttonIndex == 3){
         [self gotoRomantic];
     }
-    if(buttonIndex == 4){
+    if(buttonIndex == 3){
         [self gotoGetLucky];
     }
-    if(buttonIndex == 5){
+    if(buttonIndex == 4){
         [self gotoImSorry];
     }
-    if(buttonIndex == 6){
+    if(buttonIndex == 5){
         [theNavController popToRootViewControllerAnimated:YES];
     }
 }

@@ -52,11 +52,16 @@ enum
         frame = _banner.frame;
         frame.origin.y = _tableView.frame.origin.y + _tableView.frame.size.height;
         _banner.frame = frame;
+        NSLog(@"480");
     }
     
 	// Do any additional setup after loading the view, typically from a nib.
     [self loadMessages];
     standard = [NSUserDefaults standardUserDefaults];
+
+    [_banner removeFromSuperview];
+    [_tableView removeFromSuperview];
+    NSLog( @"viewdidload finished in %@", [self class] );
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -72,20 +77,8 @@ enum
         NSString *mobilePhoneNumber = [standard stringForKey:@"mobilePhoneNumber"];
         NSLog(@"mobile phone number is %@", mobilePhoneNumber);
     }
-
-    NSLog(@"%f %f", self.view.frame.size.height, self.tableView.frame.size.height);
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (IBAction)gotoUserPreferences:(id)sender
 {
@@ -113,6 +106,7 @@ enum
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
+    NSLog(@"reloading table");
     return NumberOfSections;
 }
 
@@ -225,18 +219,43 @@ enum
 
 - (void)layoutAnimated:(BOOL)animated
 {
+    static UIView *redView = nil;
+    if( redView == nil ) {
+        redView = [[UIView alloc] initWithFrame:CGRectMake(0.,518.,320.,50.)];
+        redView.backgroundColor = [UIColor redColor];
+    }
+    
+    [self.view sendSubviewToBack:_banner];
+    
     [UIView animateWithDuration:animated ? 0.25 : 0.0 animations:^{
         CGRect frame = _tableView.frame;
         if( _banner.bannerLoaded) {
-            frame.size.height = self.view.bounds.size.height - frame.origin.y - _banner.frame.size.height;
             NSLog( @"animating ad in");
+            frame.size.height = self.view.bounds.size.height - frame.origin.y - _banner.frame.size.height;
+            [redView removeFromSuperview];
+            [self printSubviewsOf:self.view withRecursionLevel:0];
         }
         else {
             NSLog(@"animating ad out");
             frame.size.height = self.view.bounds.size.height - frame.origin.y;
+            [self.view addSubview:redView];
+            [self printSubviewsOf:self.view withRecursionLevel:0];
         }
         _tableView.frame = frame;
     }];
+    
+    [self.view bringSubviewToFront:redView];
+    redView.alpha = 1.;
+    redView.hidden = NO;
+}
+
+-(void) printSubviewsOf:(UIView*)view withRecursionLevel:(NSInteger)level
+{
+    NSLog(@"%d %@ %@", level, [view class], NSStringFromCGRect( view.frame ) );
+    //if( ![view isKindOfClass:[UITableView class]] )
+    if( view == self.view )
+        for( UIView *v in view.subviews )
+            [self printSubviewsOf:v withRecursionLevel:level + 1];
 }
 
 #pragma mark - Messages
@@ -290,7 +309,6 @@ enum
     message.content = @"I've been thinking about our discussion and you were totally right.";
     message.popularityImage = 5;
     [messages addObject:message];
-    
 }
     
 //TO DO

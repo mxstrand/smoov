@@ -57,12 +57,12 @@
     [messages addObject:message];
     
     message = [MXSMessage new];
-    message.content = @"Lucky 6";
+    message.content = @"I want you to Snapchat me something racey for my birthday.";
     message.popularityImage = 3;
     [messages addObject:message];
     
     message = [MXSMessage new];
-    message.content = @"Lucky 7";
+    message.content = @"OMG Mondays are so boring, Snapchat me something good.";
     message.popularityImage = 3;
     [messages addObject:message];
 

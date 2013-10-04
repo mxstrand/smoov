@@ -471,7 +471,6 @@
         <!--Lucky View Controller-->
         <scene sceneID="suv-Ry-ihP">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Y1I-c5-4OL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="MXSLuckyViewController" id="WlV-2o-RL7" customClass="MXSLuckyViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kz8-h2-CMh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -555,13 +554,13 @@
                         <outlet property="tableView" destination="hgF-2x-qPX" id="3T1-Vl-jaQ"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y1I-c5-4OL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="451" y="704"/>
         </scene>
         <!--Bday Anniversary View Controller-->
         <scene sceneID="DsQ-49-bDk">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BDZ-gK-cQO" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="MXSBdayAnniversaryViewController" id="6Cx-m4-IcS" customClass="MXSBdayAnniversaryViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NsC-qn-gas">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -645,13 +644,13 @@
                         <outlet property="tableView" destination="IOZ-iP-0PP" id="Nyh-WZ-vus"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BDZ-gK-cQO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="943" y="696"/>
         </scene>
         <!--Sorry View Controller-->
         <scene sceneID="wsn-by-aE0">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EV9-xi-hB5" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="MXSSorryViewController" id="cCp-b3-KFI" customClass="MXSSorryViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RZ5-D7-4pq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -735,13 +734,13 @@
                         <outlet property="tableView" destination="AEj-gf-MLn" id="Kbj-gI-miL"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EV9-xi-hB5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1495" y="704"/>
         </scene>
         <!--Date View Controller-->
         <scene sceneID="D1q-D3-MAX">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DxJ-G0-1YW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="MXSDateViewController" id="HBf-Lh-ftk" customClass="MXSDateViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="De3-eA-ccP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -825,6 +824,7 @@
                         <outlet property="tableView" destination="ZV4-RQ-UwL" id="Pry-9T-Egm"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DxJ-G0-1YW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1887" y="696"/>
         </scene>
