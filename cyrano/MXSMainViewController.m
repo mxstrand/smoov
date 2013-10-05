@@ -15,6 +15,7 @@
 #import <AddressBookUI/AddressBookUI.h>
 #import "UIActionSheet+MessageCategory.h"
 #import "Flurry.h"
+#import <uservoice-iphone-sdk/UserVoice.h>
 
 enum
 {
@@ -23,7 +24,9 @@ enum
 } SectionEnumerator;
 
 @interface MXSMainViewController () <MFMessageComposeViewControllerDelegate>
-
+{
+    UIView *myAdView;
+}
 @end
 
 
@@ -34,8 +37,8 @@ enum
     [super viewDidLoad];
     
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:230/255.0f green:128/255.0f blue:0/255.0f alpha:1];
-    self.tableView.separatorColor = [UIColor colorWithRed:230/255.0f green:128/255.0f blue:0/255.0f alpha:1];
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:255/255.0f green:128/255.0f blue:0/255.0f alpha:1];
+    self.tableView.separatorColor = [UIColor colorWithRed:255/255.0f green:128/255.0f blue:0/255.0f alpha:1];
     
     // Add icon to navbar
     CGRect frame = _logo.frame;
@@ -43,6 +46,8 @@ enum
     frame.origin.x = self.view.frame.size.width/2. - frame.size.width/2.;
     _logo.frame = frame;
     [self.navigationController.navigationBar addSubview:_logo];
+    
+    [self createMyAd];
     
     if( self.view.frame.size.height == 480. ) {
         frame = _tableView.frame;
@@ -52,16 +57,16 @@ enum
         frame = _banner.frame;
         frame.origin.y = _tableView.frame.origin.y + _tableView.frame.size.height;
         _banner.frame = frame;
-        NSLog(@"480");
+        
+        frame = myAdView.frame;
+        frame.origin.y = _tableView.frame.origin.y + _tableView.frame.size.height;
+        myAdView.frame = frame;
+
     }
     
 	// Do any additional setup after loading the view, typically from a nib.
     [self loadMessages];
     standard = [NSUserDefaults standardUserDefaults];
-
-    [_banner removeFromSuperview];
-    [_tableView removeFromSuperview];
-    NSLog( @"viewdidload finished in %@", [self class] );
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -106,7 +111,6 @@ enum
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSLog(@"reloading table");
     return NumberOfSections;
 }
 
@@ -207,56 +211,20 @@ enum
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
 {
-    NSLog(@"Error Loading Ad: ");
-    [self layoutAnimated:YES];
+    NSLog(@"Error Loading Ad in %@", [self class]);
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.view addSubview:myAdView];
+    });
 }
 
 -(void) bannerViewDidLoadAd:(ADBannerView *)banner
 {
-    NSLog(@"did load ad");
-    [self layoutAnimated:YES];
+    NSLog(@"did load ad %@", [self class]);
+    
+    [myAdView removeFromSuperview];
 }
 
-- (void)layoutAnimated:(BOOL)animated
-{
-    static UIView *redView = nil;
-    if( redView == nil ) {
-        redView = [[UIView alloc] initWithFrame:CGRectMake(0.,518.,320.,50.)];
-        redView.backgroundColor = [UIColor redColor];
-    }
-    
-    [self.view sendSubviewToBack:_banner];
-    
-    [UIView animateWithDuration:animated ? 0.25 : 0.0 animations:^{
-        CGRect frame = _tableView.frame;
-        if( _banner.bannerLoaded) {
-            NSLog( @"animating ad in");
-            frame.size.height = self.view.bounds.size.height - frame.origin.y - _banner.frame.size.height;
-            [redView removeFromSuperview];
-            [self printSubviewsOf:self.view withRecursionLevel:0];
-        }
-        else {
-            NSLog(@"animating ad out");
-            frame.size.height = self.view.bounds.size.height - frame.origin.y;
-            [self.view addSubview:redView];
-            [self printSubviewsOf:self.view withRecursionLevel:0];
-        }
-        _tableView.frame = frame;
-    }];
-    
-    [self.view bringSubviewToFront:redView];
-    redView.alpha = 1.;
-    redView.hidden = NO;
-}
-
--(void) printSubviewsOf:(UIView*)view withRecursionLevel:(NSInteger)level
-{
-    NSLog(@"%d %@ %@", level, [view class], NSStringFromCGRect( view.frame ) );
-    //if( ![view isKindOfClass:[UITableView class]] )
-    if( view == self.view )
-        for( UIView *v in view.subviews )
-            [self printSubviewsOf:v withRecursionLevel:level + 1];
-}
 
 #pragma mark - Messages
 
@@ -310,7 +278,51 @@ enum
     message.popularityImage = 5;
     [messages addObject:message];
 }
+
+- (void)createMyAd
+{
+    myAdView = [[UIView alloc] initWithFrame:_banner.frame];
+    myAdView.backgroundColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
+    [self.view addSubview:myAdView];
+    //myAdView.userInteractionEnabled = YES;
     
+    UITapGestureRecognizer *touchOnView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(contactUs)];
+    // Set required taps and number of touches
+    [touchOnView setNumberOfTapsRequired:1];
+    [touchOnView setNumberOfTouchesRequired:1];
+    [myAdView addGestureRecognizer:touchOnView];
+    
+    UILabel *adLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(10, 3, 300, 25)];
+    
+    [adLabel1 setTextColor:[UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1]];
+    [adLabel1 setBackgroundColor:[UIColor clearColor]];
+    [adLabel1 setFont:[UIFont fontWithName: @"Helvetica-Bold" size: 15.0f]];
+    [adLabel1 setNumberOfLines:2];
+    [adLabel1 setText:@"Got ideas for new smoov texts?"];
+    [myAdView addSubview:adLabel1];
+
+    UILabel *adLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(35, 25, 300, 20)];
+    
+    [adLabel2 setTextColor:[UIColor colorWithRed:0/255.0f green:0/255.0f blue:0/255.0f alpha:1]];
+    [adLabel2 setBackgroundColor:[UIColor clearColor]];
+    [adLabel2 setFont:[UIFont fontWithName: @"Helvetica-Bold" size: 15.0f]];
+    [adLabel2 setNumberOfLines:2];
+    [adLabel2 setText:@"Click here and choose 'Post an idea'!"];
+    [myAdView addSubview:adLabel2];
+
+}
+
+- (void)contactUs
+{
+    UVConfig *config = [UVConfig configWithSite:@"smoov.uservoice.com"
+                                         andKey:@"jXrGUkCby9YjzgTsoKIA"
+                                      andSecret:@"xSDPS0gEKKTf8R142QuJlrR3VjPpqlAtAcWMw6R0Y"];
+    
+    [UserVoice presentUserVoiceInterfaceForParentViewController:self andConfig:config];
+    [Flurry logEvent:@"Uservoice engaged from ad"];
+
+}
+
 //TO DO
 /*
  A woman's version would let women text guys about sports - with prepopulation of games on that weekend, important players - or video games.

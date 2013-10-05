@@ -31,7 +31,7 @@
     [messages addObject:message];
     
     message = [MXSMessage new];
-    message.content = @"Let's reenact the scene in Armageddon where A.J. prances an Animal Cracker on Grace’s belly";
+    message.content = @"Let's reenact the scene in Armageddon the guy prances an animal cracker on the girl's stomach.";
     message.popularityImage = 3;
     [messages addObject:message];
 
@@ -51,32 +51,32 @@
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"Flirt";
+    message.content = @"Hey baby, you smell like a fancy candle.";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"Flirt";
+    message.content = @"I need a medically-induced coma to get you off my mind.";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"Flirt";
+    message.content = @"I love your eyes, and hair, and neck, and...mind.";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"Flirt";
+    message.content = @"Baby, your eyes glow like a beautiful alien.";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"Flirt";
+    message.content = @"I bet I could beat you in a crab-walking race.";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"Flirt";
+    message.content = @"I can't wait to go to sleep tonight so I can dream about you.";
     message.popularityImage = 3;
     [messages addObject:message];
 

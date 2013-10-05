@@ -32,37 +32,37 @@
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"bnb";
+    message.content = @"You are always right. I'm sorry I questioned you.";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"Sorry 5";
+    message.content = @"Thanks for not beating me up. I was being a dork.";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"Sorry 6";
+    message.content = @"Basically, I'm not that smart. Sorry.";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"Sorry 7";
+    message.content = @"If I can give you 7 hugs in under 5 seconds, will you forgive me?";
     message.popularityImage = 3;
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"Sorry 5";
+    message.content = @"I've been thinking about what happened, and I'm really sorry.";
     message.popularityImage = 3;
     [messages addObject:message];
     
     message = [MXSMessage new];
-    message.content = @"Sorry 6";
+    message.content = @"I called and it IS legally possible to change my name to stoopid-head. Should I make the appointment?";
     message.popularityImage = 3;
     [messages addObject:message];
     
     message = [MXSMessage new];
-    message.content = @"Sorry 7";
+    message.content = @"Can we hold peace talks tonight? I'm sorry.";
     message.popularityImage = 3;
     [messages addObject:message];
 

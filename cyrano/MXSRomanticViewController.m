@@ -57,12 +57,12 @@
     [messages addObject:message];
     
     message = [MXSMessage new];
-    message.content = @"Romantic 6";
+    message.content = @"I can't decide if you are prettier or smarter.";
     message.popularityImage = 3;
     [messages addObject:message];
     
     message = [MXSMessage new];
-    message.content = @"Romantic 7";
+    message.content = @"Kindness is one of your most attractive features.";
     message.popularityImage = 3;
     [messages addObject:message];
 

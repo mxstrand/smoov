@@ -98,7 +98,7 @@
                                       andSecret:@"xSDPS0gEKKTf8R142QuJlrR3VjPpqlAtAcWMw6R0Y"];
     
     [UserVoice presentUserVoiceInterfaceForParentViewController:self andConfig:config];
-    [Flurry logEvent:@"Uservoice engaged"];
+    [Flurry logEvent:@"Uservoice engaged from extras"];
 }
 
 #pragma mark populateLabelsFromUserDefaults

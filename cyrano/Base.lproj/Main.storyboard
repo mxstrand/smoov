@@ -7,7 +7,7 @@
         <!--Main View Controller-->
         <scene sceneID="gbr-dE-pL3">
             <objects>
-                <viewController id="psl-sY-SkD" customClass="MXSMainViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MXSMainViewController" id="psl-sY-SkD" customClass="MXSMainViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dQB-cC-zLq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
