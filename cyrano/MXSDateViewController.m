@@ -57,12 +57,12 @@
     [messages addObject:message];
     
     message = [MXSMessage new];
-    message.content = @"Date 6";
+    message.content = @"I'm nice so I just ordered you a 1/2 pizza to be delivered to your house. I'm gonna need to swing by and pick up my 1/2.";
     message.popularityImage = 3;
     [messages addObject:message];
     
     message = [MXSMessage new];
-    message.content = @"Date 7";
+    message.content = @"New Restaurant. You. Me. Laughs. ???";
     message.popularityImage = 3;
     [messages addObject:message];
     
