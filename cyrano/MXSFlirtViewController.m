@@ -31,7 +31,7 @@
     [messages addObject:message];
     
     message = [MXSMessage new];
-    message.content = @"Let's reenact the scene in Armageddon the guy prances an animal cracker on the girl's stomach.";
+    message.content = @"Let's reenact the scene in Armageddon where the guy prances an animal cracker on the girl's stomach.";
     message.popularityImage = 3;
     [messages addObject:message];
 
@@ -76,10 +76,14 @@
     [messages addObject:message];
 
     message = [MXSMessage new];
-    message.content = @"I can't wait to go to sleep tonight so I can dream about you.";
+    message.content = @"If we were dinosaurs, I'd want to cuddle with you through the ice age.";
     message.popularityImage = 3;
     [messages addObject:message];
 
+    message = [MXSMessage new];
+    message.content = @"I hear Lionel Ritchie music in my mind every time I think about you.";
+    message.popularityImage = 3;
+    [messages addObject:message];
 }
 
 

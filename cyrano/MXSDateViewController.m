@@ -62,10 +62,15 @@
     [messages addObject:message];
     
     message = [MXSMessage new];
-    message.content = @"New Restaurant. You. Me. Laughs. ???";
+    message.content = @"New Restaurant. You. Me. ???";
     message.popularityImage = 3;
     [messages addObject:message];
-    
+
+    message = [MXSMessage new];
+    message.content = @"What are you doing right now? Let's go have an amazing conversation somewhere.";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
 }
 
 @end

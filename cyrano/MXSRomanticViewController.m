@@ -65,6 +65,22 @@
     message.content = @"Kindness is one of your most attractive features.";
     message.popularityImage = 3;
     [messages addObject:message];
+    
+    message = [MXSMessage new];
+    message.content = @"I can't wait to go to sleep tonight so I can dream about you.";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
+    message = [MXSMessage new];
+    message.content = @"Thanks for being an incredible wife and amazing mom.";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
+    message = [MXSMessage new];
+    message.content = @"I hit the jackpot when I found you.";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
 
 }
 

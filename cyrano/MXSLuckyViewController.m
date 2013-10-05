@@ -22,11 +22,6 @@
     [messages addObject:message];
     
     message = [MXSMessage new];
-    message.content = @"Quit cleaning the oven and give me some lovin.";
-    message.popularityImage = 2;
-    [messages addObject:message];
-    
-    message = [MXSMessage new];
     message.content = @"I'm thinking about your perfume right now.";
     message.popularityImage = 3;
     [messages addObject:message];
@@ -81,6 +76,15 @@
     message.popularityImage = 3;
     [messages addObject:message];
 
+    message = [MXSMessage new];
+    message.content = @"I can't wait to see what you are going to wear to the party. I bet you'll look amazing.";
+    message.popularityImage = 3;
+    [messages addObject:message];
+    
+    message = [MXSMessage new];
+    message.content = @"Quit cleaning the oven and give me some lovin.";
+    message.popularityImage = 2;
+    [messages addObject:message];
     
 }
 

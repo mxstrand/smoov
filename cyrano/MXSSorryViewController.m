@@ -66,6 +66,11 @@
     message.popularityImage = 3;
     [messages addObject:message];
 
+    message = [MXSMessage new];
+    message.content = @"I'm sorry I said I liked your sister's yoga pants.";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
 }
 
 @end
