@@ -55,17 +55,12 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="7bD-ge-loE">
-                                                    <rect key="frame" x="247" y="37" width="55" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outlet property="message" destination="UkH-5F-H7m" id="ycE-Cl-04y"/>
-                                            <outlet property="visualPopularityImage" destination="7bD-ge-loE" id="EII-gM-MBX"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -335,17 +330,12 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="SFM-SO-KjL">
-                                                    <rect key="frame" x="247" y="37" width="55" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outlet property="message" destination="NLk-SN-6Hd" id="FLx-Wy-nBe"/>
-                                            <outlet property="visualPopularityImage" destination="SFM-SO-KjL" id="dzn-jW-SZF"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -425,17 +415,12 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="X0I-da-U3J">
-                                                    <rect key="frame" x="247" y="37" width="55" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outlet property="message" destination="7bG-Oc-p6E" id="Fv6-TJ-2Yo"/>
-                                            <outlet property="visualPopularityImage" destination="X0I-da-U3J" id="jtV-iH-TWd"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -515,17 +500,12 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Rtq-qd-oRn">
-                                                    <rect key="frame" x="247" y="37" width="55" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outlet property="message" destination="WVx-4P-y4j" id="sWE-yX-9zr"/>
-                                            <outlet property="visualPopularityImage" destination="Rtq-qd-oRn" id="i4Y-ig-aKt"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -605,17 +585,12 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="GPK-Yi-uiU">
-                                                    <rect key="frame" x="247" y="37" width="55" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outlet property="message" destination="eM8-5Y-N3c" id="bWF-SL-VNZ"/>
-                                            <outlet property="visualPopularityImage" destination="GPK-Yi-uiU" id="Rqy-Q3-seW"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -695,17 +670,12 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="wgS-Xd-kFy">
-                                                    <rect key="frame" x="247" y="37" width="55" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outlet property="message" destination="FRE-sn-mNN" id="Qie-v4-z5d"/>
-                                            <outlet property="visualPopularityImage" destination="wgS-Xd-kFy" id="UFf-dx-Hvh"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -785,17 +755,12 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="fkR-ln-yl4">
-                                                    <rect key="frame" x="247" y="37" width="55" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outlet property="message" destination="a9N-EP-Aa5" id="tvY-m8-rWp"/>
-                                            <outlet property="visualPopularityImage" destination="fkR-ln-yl4" id="xxq-BT-dJn"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

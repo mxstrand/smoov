@@ -71,6 +71,12 @@
     message.popularityImage = 3;
     [messages addObject:message];
 
+    message = [MXSMessage new];
+    message.content = @"What's your favorite Lean Pocket? because I'm flush with coupons right now.";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
+    
 }
 
 @end

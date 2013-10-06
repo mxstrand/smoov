@@ -292,7 +292,7 @@ enum
     [touchOnView setNumberOfTouchesRequired:1];
     [myAdView addGestureRecognizer:touchOnView];
     
-    UILabel *adLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(15, 3, 300, 25)];
+    UILabel *adLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(20, 3, 300, 25)];
     
     [adLabel1 setTextColor:[UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1]];
     [adLabel1 setBackgroundColor:[UIColor clearColor]];
@@ -301,7 +301,7 @@ enum
     [adLabel1 setText:@"Got ideas for new smoov texts?"];
     [myAdView addSubview:adLabel1];
 
-    UILabel *adLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(60, 25, 300, 20)];
+    UILabel *adLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(93, 25, 300, 20)];
     
     [adLabel2 setTextColor:[UIColor colorWithRed:0/255.0f green:0/255.0f blue:0/255.0f alpha:1]];
     [adLabel2 setBackgroundColor:[UIColor clearColor]];

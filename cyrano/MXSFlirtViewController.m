@@ -84,6 +84,13 @@
     message.content = @"I hear Lionel Ritchie music in my mind every time I think about you.";
     message.popularityImage = 3;
     [messages addObject:message];
+
+    message = [MXSMessage new];
+    message.content = @"I just named my wifi network after you.";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
+
 }
 
 
