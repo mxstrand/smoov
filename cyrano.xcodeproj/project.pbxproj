@@ -29,6 +29,14 @@
 		65D9451117ECEC3A0081E073 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65D9450F17ECEC3A0081E073 /* InfoPlist.strings */; };
 		65D9451317ECEC3A0081E073 /* cyranoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D9451217ECEC3A0081E073 /* cyranoTests.m */; };
 		65D9452417ED06770081E073 /* MXSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D9452317ED06770081E073 /* MXSMessage.m */; };
+		65DC926E18034F0500C7C1E2 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DC926D18034F0500C7C1E2 /* Parse.framework */; };
+		65DC927018034F5200C7C1E2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DC926F18034F5200C7C1E2 /* AudioToolbox.framework */; };
+		65DC927218034F5C00C7C1E2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DC927118034F5C00C7C1E2 /* CFNetwork.framework */; };
+		65DC927418034F6B00C7C1E2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DC927318034F6B00C7C1E2 /* CoreLocation.framework */; };
+		65DC927618034F7D00C7C1E2 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DC927518034F7D00C7C1E2 /* libz.1.1.3.dylib */; };
+		65DC927818034F8C00C7C1E2 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DC927718034F8C00C7C1E2 /* MobileCoreServices.framework */; };
+		65DC927A18034F9700C7C1E2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DC927918034F9700C7C1E2 /* QuartzCore.framework */; };
+		65DC927C18034FA700C7C1E2 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DC927B18034FA700C7C1E2 /* StoreKit.framework */; };
 		65E723B717ED608600A294EB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E723B617ED608600A294EB /* MessageUI.framework */; };
 		65E98D4017FCEA27000EEF0B /* libFlurry_4.2.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E98CA817FCEA27000EEF0B /* libFlurry_4.2.4.a */; };
 		65E98D4117FCEA27000EEF0B /* _flurry_8h_source.html in Resources */ = {isa = PBXBuildFile; fileRef = 65E98CAA17FCEA27000EEF0B /* _flurry_8h_source.html */; };
@@ -233,6 +241,14 @@
 		65D9451217ECEC3A0081E073 /* cyranoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cyranoTests.m; sourceTree = "<group>"; };
 		65D9452217ED06770081E073 /* MXSMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXSMessage.h; sourceTree = "<group>"; };
 		65D9452317ED06770081E073 /* MXSMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXSMessage.m; sourceTree = "<group>"; };
+		65DC926D18034F0500C7C1E2 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		65DC926F18034F5200C7C1E2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		65DC927118034F5C00C7C1E2 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		65DC927318034F6B00C7C1E2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		65DC927518034F7D00C7C1E2 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		65DC927718034F8C00C7C1E2 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		65DC927918034F9700C7C1E2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		65DC927B18034FA700C7C1E2 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		65E723B617ED608600A294EB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		65E98CA717FCEA27000EEF0B /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		65E98CA817FCEA27000EEF0B /* libFlurry_4.2.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.2.4.a; sourceTree = "<group>"; };
@@ -401,12 +417,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65DC927C18034FA700C7C1E2 /* StoreKit.framework in Frameworks */,
+				65DC927A18034F9700C7C1E2 /* QuartzCore.framework in Frameworks */,
+				65DC927818034F8C00C7C1E2 /* MobileCoreServices.framework in Frameworks */,
+				65DC927618034F7D00C7C1E2 /* libz.1.1.3.dylib in Frameworks */,
+				65DC927418034F6B00C7C1E2 /* CoreLocation.framework in Frameworks */,
+				65DC927218034F5C00C7C1E2 /* CFNetwork.framework in Frameworks */,
+				65DC927018034F5200C7C1E2 /* AudioToolbox.framework in Frameworks */,
 				65E98DD717FCEABD000EEF0B /* AdSupport.framework in Frameworks */,
 				65E98DD517FCEAA9000EEF0B /* Security.framework in Frameworks */,
 				65E98DD317FCEA99000EEF0B /* SystemConfiguration.framework in Frameworks */,
 				65E98D4017FCEA27000EEF0B /* libFlurry_4.2.4.a in Frameworks */,
 				6509100217F4B4490054DC04 /* EventKit.framework in Frameworks */,
 				6558549A17F23E5100A8B596 /* iAd.framework in Frameworks */,
+				65DC926E18034F0500C7C1E2 /* Parse.framework in Frameworks */,
 				65E723B717ED608600A294EB /* MessageUI.framework in Frameworks */,
 				65D944EA17ECEC3A0081E073 /* CoreGraphics.framework in Frameworks */,
 				65E98DC617FCEA27000EEF0B /* libFlurryAds_4.2.4.a in Frameworks */,
@@ -472,6 +496,14 @@
 		65D944E617ECEC3A0081E073 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				65DC927B18034FA700C7C1E2 /* StoreKit.framework */,
+				65DC927918034F9700C7C1E2 /* QuartzCore.framework */,
+				65DC927718034F8C00C7C1E2 /* MobileCoreServices.framework */,
+				65DC927518034F7D00C7C1E2 /* libz.1.1.3.dylib */,
+				65DC927318034F6B00C7C1E2 /* CoreLocation.framework */,
+				65DC927118034F5C00C7C1E2 /* CFNetwork.framework */,
+				65DC926F18034F5200C7C1E2 /* AudioToolbox.framework */,
+				65DC926D18034F0500C7C1E2 /* Parse.framework */,
 				65E98DD617FCEABD000EEF0B /* AdSupport.framework */,
 				65E98DD417FCEAA9000EEF0B /* Security.framework */,
 				65E98DD217FCEA99000EEF0B /* SystemConfiguration.framework */,
@@ -1165,6 +1197,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Strand (AGJRJT2L5R)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/mxstrand/dev_iOS/SMS\\ apps/cyrano/cyrano",
+					"/Users/mxstrand/dev_iOS/SMS\\ apps/cyrano",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cyrano/cyrano-Prefix.pch";
 				INFOPLIST_FILE = "cyrano/cyrano-Info.plist";
@@ -1188,6 +1225,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Michael Strand (P3V92265CW)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/mxstrand/dev_iOS/SMS\\ apps/cyrano/cyrano",
+					"/Users/mxstrand/dev_iOS/SMS\\ apps/cyrano",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cyrano/cyrano-Prefix.pch";
 				INFOPLIST_FILE = "cyrano/cyrano-Info.plist";

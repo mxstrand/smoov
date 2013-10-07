@@ -81,6 +81,20 @@
     message.popularityImage = 3;
     [messages addObject:message];
 
+    message = [MXSMessage new];
+    message.content = @"Let's use the fireplace tonight.";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
+    message = [MXSMessage new];
+    message.content = @"I want to bring home a nice bottle of wine tonight. Red or white?.";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
+    message = [MXSMessage new];
+    message.content = @"I love you sweetheart! Happy Anniversary!.";
+    message.popularityImage = 3;
+    [messages addObject:message];
 
 }
 

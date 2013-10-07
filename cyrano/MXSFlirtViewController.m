@@ -90,6 +90,21 @@
     message.popularityImage = 3;
     [messages addObject:message];
 
+    message = [MXSMessage new];
+    message.content = @"I'd totally populate Mars with you.";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
+    message = [MXSMessage new];
+    message.content = @"I just decided to have 6-pack abs by Christmas, so you probably want to get on this train now.";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
+    message = [MXSMessage new];
+    message.content = @"I bought a Groupon for professional Photoshopping. Want to merge our photos and see what our kids will look like?.";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
 
 }
 

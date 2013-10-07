@@ -329,6 +329,13 @@ enum
  Tutorial on client driven reminder notifications.  http://www.appcoda.com/ios-programming-local-notification-tutorial/
  Repeating timers https://developer.apple.com/library/ios/documentation/cocoa/reference/foundation/Classes/NSTimer_Class/Reference/NSTimer.html
  
+ Email: smoovtext@live.com
+ Password: R2D2forPrez
+ Twitter: smooveText
+ Password: R2D2forPrez
+ 
+ Finished step 3 in the Parse install. Nex would be step 4. https://www.parse.com/apps/quickstart#ios/native/existing
+ 
 */
 
 @end

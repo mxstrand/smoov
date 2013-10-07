@@ -85,6 +85,12 @@
     message.content = @"Quit cleaning the oven and give me some lovin.";
     message.popularityImage = 2;
     [messages addObject:message];
+
+    message = [MXSMessage new];
+    message.content = @"Let's have mamosas in bed one morning this weekend.";
+    message.popularityImage = 2;
+    [messages addObject:message];
+
     
 }
 

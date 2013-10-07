@@ -8,16 +8,23 @@
 
 #import "MXSAppDelegate.h"
 #import "Flurry.h"
+#import <Parse/Parse.h>
 
 @implementation MXSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    // FLURRY API
     [Flurry setCrashReportingEnabled:YES];
     //note: iOS only allows one crash reporting tool per app; if using another, set to: NO
     [Flurry startSession:@"JHRJCRKNZXFMDKG662QV"];
     //your code
+    
+    // PARSE API
+    [Parse setApplicationId:@"Tu6Nl4z2pmE179kPG7uaIn6rzBc5nNT5BuXdD7GY"
+                  clientKey:@"hhBDYdw8Lx3zSAudMiEHe0OGbTvJjs8gpmwMA5uH"];
     
     return YES;
 }

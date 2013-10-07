@@ -76,6 +76,11 @@
     message.popularityImage = 3;
     [messages addObject:message];
 
+    message = [MXSMessage new];
+    message.content = @"Let's go camping, have a fire, and I'll tell you ghost stories.";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
     
 }
 
