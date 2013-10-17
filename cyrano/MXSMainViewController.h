@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <iAd/iAd.h>
 
-@interface MXSMainViewController : UIViewController <ADBannerViewDelegate>
+@interface MXSMainViewController : UIViewController <ADBannerViewDelegate, UIGestureRecognizerDelegate>
 {
     NSMutableArray *messages;
     NSUserDefaults *standard; //supports abbreviated code in NSUserDefaults code references.

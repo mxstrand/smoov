@@ -15,8 +15,23 @@
 {
     messages = [NSMutableArray new];
     NSLog(@"messages being loaded");
-    
+
     MXSMessage *message = [MXSMessage new];
+    message.content = @"Let's use the fireplace tonight.";
+    message.popularityImage = 3;
+    [messages addObject:message];
+    
+    message = [MXSMessage new];
+    message.content = @"I want to bring home a nice bottle of wine tonight. Red or white?.";
+    message.popularityImage = 3;
+    [messages addObject:message];
+    
+    message = [MXSMessage new];
+    message.content = @"I love you sweetheart! Happy Anniversary!.";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
+    message = [MXSMessage new];
     message.content = @"I thought you looked really pretty this morning.";
     message.popularityImage = 5;
     [messages addObject:message];
@@ -80,22 +95,6 @@
     message.content = @"I hit the jackpot when I found you.";
     message.popularityImage = 3;
     [messages addObject:message];
-
-    message = [MXSMessage new];
-    message.content = @"Let's use the fireplace tonight.";
-    message.popularityImage = 3;
-    [messages addObject:message];
-
-    message = [MXSMessage new];
-    message.content = @"I want to bring home a nice bottle of wine tonight. Red or white?.";
-    message.popularityImage = 3;
-    [messages addObject:message];
-
-    message = [MXSMessage new];
-    message.content = @"I love you sweetheart! Happy Anniversary!.";
-    message.popularityImage = 3;
-    [messages addObject:message];
-
 }
 
 @end

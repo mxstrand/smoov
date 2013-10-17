@@ -9,6 +9,7 @@
 #import "MXSMainViewController.h"
 #import "MXSMessage.h"
 #import "MXSMessageCell.h"
+#import "MXSMessageReversalViewController.h"
 #import <MessageUI/MessageUI.h>
 #import <iAd/iAd.h>
 #import <AddressBook/AddressBook.h>
@@ -27,6 +28,7 @@ enum
 {
     UIView *myAdView;
 }
+
 @end
 
 
@@ -64,7 +66,14 @@ enum
 
     }
     
-	// Do any additional setup after loading the view, typically from a nib.
+	// Add long press gesture recognizer
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(handleLongPress:)];
+    lpgr.minimumPressDuration = 1; //seconds
+    lpgr.delegate = self;
+    [self.tableView addGestureRecognizer:lpgr];
+    
+    // Do any additional setup after loading the view, typically from a nib.
     [self loadMessages];
     standard = [NSUserDefaults standardUserDefaults];
 }
@@ -148,6 +157,33 @@ enum
     
     //NSArray *selectedAttachments = [NSString stringWithFormat:@"icon%d.png", indexPath.row];
     [self showSMS:selectedContent];
+}
+
+-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    if( gestureRecognizer.state != UIGestureRecognizerStateBegan ) return;
+    
+    CGPoint p = [gestureRecognizer locationInView:self.tableView];
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+    
+    if (indexPath == nil)
+        NSLog(@"long press on table view but not on a row");
+    else {
+        NSLog(@"long press on table view at row %d", indexPath.row);
+        
+        MXSMessage *selectedMessage = [messages objectAtIndex:indexPath.row];
+    
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        //The name "Main" is the filename of your storyboard (without the extension).
+    
+        MXSMessageReversalViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MXSMessageReversalViewController"];
+        // push to current navigation controller, from any view controller
+        vc.message = selectedMessage;
+    
+        [self.navigationController pushViewController:vc animated:NO];
+        [UIView transitionWithView:self.navigationController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight animations:nil completion:nil];
+    }
 }
 
 
@@ -322,6 +358,7 @@ enum
     [Flurry logEvent:@"Uservoice engaged from ad"];
 
 }
+
 
 //TO DO
 /*

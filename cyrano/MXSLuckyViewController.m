@@ -17,6 +17,16 @@
     NSLog(@"messages being loaded");
     
     MXSMessage *message = [MXSMessage new];
+    message.content = @"Let's have mamosas in bed one morning this weekend.";
+    message.popularityImage = 2;
+    [messages addObject:message];
+    
+    message = [MXSMessage new];
+    message.content = @"Here's the text I want to send you tomorrow...I can't get last night off my mind.";
+    message.popularityImage = 2;
+    [messages addObject:message];
+    
+    message = [MXSMessage new];
     message.content = @"Let's light some candles tonight during dinner.";
     message.popularityImage = 5;
     [messages addObject:message];
@@ -85,13 +95,6 @@
     message.content = @"Quit cleaning the oven and give me some lovin.";
     message.popularityImage = 2;
     [messages addObject:message];
-
-    message = [MXSMessage new];
-    message.content = @"Let's have mamosas in bed one morning this weekend.";
-    message.popularityImage = 2;
-    [messages addObject:message];
-
-    
 }
 
 @end

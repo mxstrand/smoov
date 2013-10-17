@@ -10,6 +10,7 @@
 		12DE340E5FEE423DB687B7EB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57980DE19D59416EBCDEBA94 /* libPods.a */; };
 		6509100217F4B4490054DC04 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6509100117F4B4480054DC04 /* EventKit.framework */; };
 		650A9C4617FB6F6E00D4B9C4 /* UIActionSheet+MessageCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 650A9C4517FB6F6E00D4B9C4 /* UIActionSheet+MessageCategory.m */; };
+		651BA63818108E7D00E47D9B /* MXSMessageReversalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 651BA63718108E7D00E47D9B /* MXSMessageReversalViewController.m */; };
 		6558549A17F23E5100A8B596 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6558549917F23E5100A8B596 /* iAd.framework */; };
 		65A047D717FE4242001333FD /* MXSRomanticViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A047D517FE4242001333FD /* MXSRomanticViewController.m */; };
 		65A047E017FE4671001333FD /* MXSBdayAnniversaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A047D817FE4671001333FD /* MXSBdayAnniversaryViewController.m */; };
@@ -211,6 +212,8 @@
 		650A9C4317FB30B900D4B9C4 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		650A9C4417FB6F6E00D4B9C4 /* UIActionSheet+MessageCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+MessageCategory.h"; sourceTree = "<group>"; };
 		650A9C4517FB6F6E00D4B9C4 /* UIActionSheet+MessageCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+MessageCategory.m"; sourceTree = "<group>"; };
+		651BA63618108E7D00E47D9B /* MXSMessageReversalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXSMessageReversalViewController.h; sourceTree = "<group>"; };
+		651BA63718108E7D00E47D9B /* MXSMessageReversalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXSMessageReversalViewController.m; sourceTree = "<group>"; };
 		6558549917F23E5100A8B596 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		65A047D517FE4242001333FD /* MXSRomanticViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXSRomanticViewController.m; sourceTree = "<group>"; };
 		65A047D617FE4242001333FD /* MXSRomanticViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXSRomanticViewController.h; sourceTree = "<group>"; };
@@ -453,7 +456,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		65A047E417FE46A9001333FD /* ChildrenOfMainControllers */ = {
+		651BA639181094C800E47D9B /* SecondaryViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				651BA63618108E7D00E47D9B /* MXSMessageReversalViewController.h */,
+				651BA63718108E7D00E47D9B /* MXSMessageReversalViewController.m */,
+				65FCCE2717F3A41A002029C7 /* MXSPreferencesViewController.h */,
+				65FCCE2817F3A41A002029C7 /* MXSPreferencesViewController.m */,
+			);
+			name = SecondaryViewControllers;
+			sourceTree = "<group>";
+		};
+		65A047E417FE46A9001333FD /* ChildrenOfMainViewController */ = {
 			isa = PBXGroup;
 			children = (
 				65A047D817FE4671001333FD /* MXSBdayAnniversaryViewController.m */,
@@ -469,7 +483,7 @@
 				65A047D517FE4242001333FD /* MXSRomanticViewController.m */,
 				65A047D617FE4242001333FD /* MXSRomanticViewController.h */,
 			);
-			name = ChildrenOfMainControllers;
+			name = ChildrenOfMainViewController;
 			sourceTree = "<group>";
 		};
 		65D944DB17ECEC3A0081E073 = {
@@ -523,14 +537,13 @@
 			isa = PBXGroup;
 			children = (
 				65FA291217ED0B1E00C7B96E /* Main.storyboard */,
+				651BA639181094C800E47D9B /* SecondaryViewControllers */,
 				65E98CA417FCEA27000EEF0B /* Flurry iPhone SDK viPhone 4 */,
-				65FCCE2717F3A41A002029C7 /* MXSPreferencesViewController.h */,
-				65FCCE2817F3A41A002029C7 /* MXSPreferencesViewController.m */,
 				65D944F617ECEC3A0081E073 /* MXSAppDelegate.h */,
 				65D944F717ECEC3A0081E073 /* MXSAppDelegate.m */,
 				65D944FC17ECEC3A0081E073 /* MXSMainViewController.h */,
 				65D944FD17ECEC3A0081E073 /* MXSMainViewController.m */,
-				65A047E417FE46A9001333FD /* ChildrenOfMainControllers */,
+				65A047E417FE46A9001333FD /* ChildrenOfMainViewController */,
 				650A9C4417FB6F6E00D4B9C4 /* UIActionSheet+MessageCategory.h */,
 				650A9C4517FB6F6E00D4B9C4 /* UIActionSheet+MessageCategory.m */,
 				65FA291A17ED0F5800C7B96E /* MXSMessageCell.h */,
@@ -1060,6 +1073,7 @@
 				65E98DB817FCEA27000EEF0B /* pages_64.js in Sources */,
 				65E98D4E17FCEA27000EEF0B /* dir_2c12105386bcc5c3935feab96f296a41.js in Sources */,
 				65D944F817ECEC3A0081E073 /* MXSAppDelegate.m in Sources */,
+				651BA63818108E7D00E47D9B /* MXSMessageReversalViewController.m in Sources */,
 				65E98D8117FCEA27000EEF0B /* all_61.js in Sources */,
 				65E98DAA17FCEA27000EEF0B /* functions_69.js in Sources */,
 				65E98D8B17FCEA27000EEF0B /* all_67.js in Sources */,

@@ -17,6 +17,26 @@
     NSLog(@"messages being loaded");
     
     MXSMessage *message = [MXSMessage new];
+    message.content = @"Let's go camping, have a fire, and I'll tell you ghost stories.";
+    message.popularityImage = 3;
+    [messages addObject:message];
+    
+    message = [MXSMessage new];
+    message.content = @"When's the last time you went to the zoo?. Let's go look at baby tigers together.";
+    message.popularityImage = 3;
+    [messages addObject:message];
+    
+    message = [MXSMessage new];
+    message.content = @"I just had a great idea. Let's go drink a bottle of wine at the beach.";
+    message.popularityImage = 3;
+    [messages addObject:message];
+    
+    message = [MXSMessage new];
+    message.content = @"I'm a kid at heart. Want to go to the aquarium with me?";
+    message.popularityImage = 3;
+    [messages addObject:message];
+
+    message = [MXSMessage new];
     message.content = @"When's our next rendezvous?";
     message.popularityImage = 5;
     [messages addObject:message];
@@ -75,13 +95,6 @@
     message.content = @"What's your favorite Lean Pocket? because I'm flush with coupons right now.";
     message.popularityImage = 3;
     [messages addObject:message];
-
-    message = [MXSMessage new];
-    message.content = @"Let's go camping, have a fire, and I'll tell you ghost stories.";
-    message.popularityImage = 3;
-    [messages addObject:message];
-
-    
 }
 
 @end
