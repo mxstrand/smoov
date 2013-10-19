@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class MXSMessageCategory;
+
 @interface MXSMessages : NSObject
 
-- (void)messagesInCategory:(NSString *)category completion:(void (^)(NSArray *messages))completion;
+- (void)messagesInCategory:(MXSMessageCategory *)category completion:(void (^)(NSArray *messages))completion;
+
+- (NSArray *)categories;
 
 @end

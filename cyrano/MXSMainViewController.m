@@ -8,6 +8,8 @@
 
 #import "MXSMainViewController.h"
 #import "MXSMessage.h"
+#import "MXSMessages.h"
+#import "MXSMessageCategory.h"
 #import "MXSMessageCell.h"
 #import "MXSMessageReversalViewController.h"
 #import <MessageUI/MessageUI.h>
@@ -17,6 +19,7 @@
 #import "UIActionSheet+MessageCategory.h"
 #import "Flurry.h"
 #import <uservoice-iphone-sdk/UserVoice.h>
+#import "MXSMessageViewController.h"
 
 enum
 {
@@ -24,7 +27,7 @@ enum
     NumberOfSections
 } SectionEnumerator;
 
-@interface MXSMainViewController () <MFMessageComposeViewControllerDelegate>
+@interface MXSMainViewController () <MFMessageComposeViewControllerDelegate, UIActionSheetDelegate>
 {
     UIView *myAdView;
 }
@@ -37,47 +40,6 @@ enum
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
-    // table styling
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:255/255.0f green:128/255.0f blue:0/255.0f alpha:1];
-    self.tableView.separatorColor = [UIColor colorWithRed:255/255.0f green:128/255.0f blue:0/255.0f alpha:1];
-    
-    // Add icon to navbar
-    CGRect frame = _logo.frame;
-    frame.origin.y = 0.;
-    frame.origin.x = self.view.frame.size.width/2. - frame.size.width/2.;
-    _logo.frame = frame;
-    [self.navigationController.navigationBar addSubview:_logo];
-    
-    [self createMyAd];
-    
-    if( self.view.frame.size.height == 480. ) {
-        frame = _tableView.frame;
-        frame.size.height = self.view.frame.size.height - frame.origin.y - _banner.frame.size.height;
-        _tableView.frame = frame;
-        
-        frame = _banner.frame;
-        frame.origin.y = _tableView.frame.origin.y + _tableView.frame.size.height;
-        _banner.frame = frame;
-        
-        frame = myAdView.frame;
-        frame.origin.y = _tableView.frame.origin.y + _tableView.frame.size.height;
-        myAdView.frame = frame;
-
-    }
-    
-	// Add long press gesture recognizer
-    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
-                                          initWithTarget:self action:@selector(handleLongPress:)];
-    lpgr.minimumPressDuration = 1; //seconds
-    lpgr.delegate = self;
-    [self.tableView addGestureRecognizer:lpgr];
-    
-    // Do any additional setup after loading the view, typically from a nib.
-    [self loadParseMessages];
-    standard = [NSUserDefaults standardUserDefaults];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -98,171 +60,19 @@ enum
 
 
 - (IBAction)gotoUserPreferences:(id)sender
-{
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    //The name "Main" is the filename of your storyboard (without the extension).
-    //NSLog(
-    
-    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MXSPreferencesViewController"];
-    // push to current navigation controller, from any view controller
-    
-    [self.navigationController pushViewController:vc animated:YES];
-    //The view controller's identifier has to be set as the "Storyboard ID" in the Identity Inspector.
-    
+{    
 }
-- (IBAction)chooseMessageCategory:(id)sender {
-    
-    // Use the Objective-c category for choosing a message cateogry
-    UIActionSheet *displayImageOption = [UIActionSheet showMessageCategoriesWithNavController:self.navigationController];
-    
-    [displayImageOption showInView:self.view];
-}
-
-
-#pragma mark - UITableView data source
-
--(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
+- (IBAction)chooseMessageCategory:(id)sender
 {
-    return NumberOfSections;
-}
-
--(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    self.tableView.rowHeight = 60.f;
-    
-    return [messages count];
-    
-}
-
--(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    MXSMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MessageViewCell" forIndexPath:indexPath];
-    [cell populateWithMessage:messages[indexPath.row]];
-    return cell;
-    
 }
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    MXSMessage *selectedMessage = [messages objectAtIndex:indexPath.row];
-    NSString *selectedContent = selectedMessage.content;
 
-    // Send chosen message to flurry
-    NSDictionary *messageParams =
-    [NSDictionary dictionaryWithObjectsAndKeys:
-     selectedContent, @"Message content", // Capture message
-     nil];
-    
-    [Flurry logEvent:@"Message chosen by user" withParameters:messageParams];
-    NSLog(@"Message chosen by user");
-    
-    //NSArray *selectedAttachments = [NSString stringWithFormat:@"icon%d.png", indexPath.row];
-    [self showSMS:selectedContent];
-}
-
--(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
-{
-    if( gestureRecognizer.state != UIGestureRecognizerStateBegan ) return;
-    
-    CGPoint p = [gestureRecognizer locationInView:self.tableView];
-    
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
-    
-    if (indexPath == nil)
-        NSLog(@"long press on table view but not on a row");
-    else {
-        NSLog(@"long press on table view at row %d", indexPath.row);
-        
-        MXSMessage *selectedMessage = [messages objectAtIndex:indexPath.row];
-    
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        //The name "Main" is the filename of your storyboard (without the extension).
-    
-        MXSMessageReversalViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MXSMessageReversalViewController"];
-        // push to current navigation controller, from any view controller
-        vc.message = selectedMessage;
-    
-        [self.navigationController pushViewController:vc animated:NO];
-        [UIView transitionWithView:self.navigationController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight animations:nil completion:nil];
-    }
-}
-
-
-- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult) result
-{
-    switch (result) {
-        case MessageComposeResultCancelled:
-            [Flurry logEvent:@"Message cancellled by user"];
-            break;
-            
-        case MessageComposeResultFailed:
-        {
-            UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to send SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [warningAlert show];
-            [Flurry logEvent:@"Message send failed"];
-            break;
-        }
-            
-        case MessageComposeResultSent:
-            [Flurry logEvent:@"Message send success"];
-            break;
-        
-        default:
-            break;
-    }
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 #pragma mark - showSMS
 
-- (void)showSMS:(NSString*)message
-{
-    if (![MFMessageComposeViewController canSendText]) {
-        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [warningAlert show];
-        return;
-    }
-    
-    NSString *SMSmessage = [NSString stringWithFormat:@"%@", message];
-    //NSArray *attachments = attachments;
-    
-    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
-    messageController.messageComposeDelegate = self;
-    
-    NSLog(@"Mobile Number %@",[standard stringForKey:@"mobilePhoneNumber"]);
-    
-    // Only populate the recipient, if a default recipient has been set.
-    if ([standard stringForKey:@"mobilePhoneNumber"] != NULL) {
-        [messageController setRecipients:@[[standard stringForKey:@"mobilePhoneNumber"]]];//Each string in the array should contain the phone number of the intended recipient.
-    }
-    
-    [messageController setBody:SMSmessage];
-    // [messageController addAttachmentURL:attachments];
-    
-    // Present message view controller on screen
-    [self presentViewController:messageController animated:YES completion:nil];
-}
 
-# pragma mark - Ad Error Handling
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
-{
-    NSLog(@"Error Loading Ad in %@", [self class]);
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.view addSubview:myAdView];
-    });
-}
-
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner
-{
-    NSLog(@"did load ad %@", [self class]);
-    
-    [myAdView removeFromSuperview];
-}
 
 
 #pragma mark - Messages
@@ -349,49 +159,6 @@ enum
     NSLog(@"messages being loaded");
 }
 
-- (void)createMyAd
-{
-    myAdView = [[UIView alloc] initWithFrame:_banner.frame];
-    myAdView.backgroundColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
-    [self.view addSubview:myAdView];
-    //myAdView.userInteractionEnabled = YES;
-    
-    UITapGestureRecognizer *touchOnView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(contactUs)];
-    // Set required taps and number of touches
-    [touchOnView setNumberOfTapsRequired:1];
-    [touchOnView setNumberOfTouchesRequired:1];
-    [myAdView addGestureRecognizer:touchOnView];
-    
-    UILabel *adLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(20, 3, 300, 25)];
-    
-    [adLabel1 setTextColor:[UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1]];
-    [adLabel1 setBackgroundColor:[UIColor clearColor]];
-    [adLabel1 setFont:[UIFont fontWithName: @"Helvetica-Bold" size: 15.0f]];
-    [adLabel1 setNumberOfLines:2];
-    [adLabel1 setText:@"Got ideas for new smoov texts?"];
-    [myAdView addSubview:adLabel1];
-
-    UILabel *adLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(93, 25, 300, 20)];
-    
-    [adLabel2 setTextColor:[UIColor colorWithRed:0/255.0f green:0/255.0f blue:0/255.0f alpha:1]];
-    [adLabel2 setBackgroundColor:[UIColor clearColor]];
-    [adLabel2 setFont:[UIFont fontWithName: @"Helvetica-Bold" size: 15.0f]];
-    [adLabel2 setNumberOfLines:2];
-    [adLabel2 setText:@"Click here to 'POST AN IDEA'"];
-    [myAdView addSubview:adLabel2];
-
-}
-
-- (void)contactUs
-{
-    UVConfig *config = [UVConfig configWithSite:@"smoov.uservoice.com"
-                                         andKey:@"jXrGUkCby9YjzgTsoKIA"
-                                      andSecret:@"xSDPS0gEKKTf8R142QuJlrR3VjPpqlAtAcWMw6R0Y"];
-    
-    [UserVoice presentUserVoiceInterfaceForParentViewController:self andConfig:config];
-    [Flurry logEvent:@"Uservoice engaged from ad"];
-
-}
 
 - (void)hudWasHidden:(MBProgressHUD *)hud {
     // Remove HUD from screen when the HUD hides

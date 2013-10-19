@@ -10,6 +10,4 @@
 
 @interface MXSMessageViewController : UIViewController
 
-@property (nonatomic, copy) NSString *messageCategory;
-
 @end

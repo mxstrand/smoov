@@ -13,13 +13,6 @@
 
 @interface MXSMessageCell : UITableViewCell
 
-{
-    IBOutlet UILabel *message;
-    IBOutlet UIImageView *visualPopularityImage;
-}
-
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
-
--(void) populateWithMessage:(MXSMessage*)message;
 
 @end

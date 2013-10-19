@@ -193,6 +193,7 @@
 		65ED052717FDF11F007668C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65ED052617FDF11F007668C0 /* Images.xcassets */; };
 		65F7E80618123CBD00436397 /* MXSMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7E80518123CBD00436397 /* MXSMessageViewController.m */; };
 		65F7E80C1812409500436397 /* MXSMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7E80B1812409500436397 /* MXSMessages.m */; };
+		65F7E80F1812554F00436397 /* MXSMessageCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7E80E1812554F00436397 /* MXSMessageCategory.m */; };
 		65FA291417ED0B1E00C7B96E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65FA291217ED0B1E00C7B96E /* Main.storyboard */; };
 		65FA291717ED0B5D00C7B96E /* MXSFlirtViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FA291617ED0B5D00C7B96E /* MXSFlirtViewController.m */; };
 		65FA291C17ED0F5800C7B96E /* MXSMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FA291B17ED0F5800C7B96E /* MXSMessageCell.m */; };
@@ -418,6 +419,8 @@
 		65F7E80518123CBD00436397 /* MXSMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXSMessageViewController.m; sourceTree = "<group>"; };
 		65F7E80A1812409500436397 /* MXSMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXSMessages.h; sourceTree = "<group>"; };
 		65F7E80B1812409500436397 /* MXSMessages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXSMessages.m; sourceTree = "<group>"; };
+		65F7E80D1812554F00436397 /* MXSMessageCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXSMessageCategory.h; sourceTree = "<group>"; };
+		65F7E80E1812554F00436397 /* MXSMessageCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXSMessageCategory.m; sourceTree = "<group>"; };
 		65FA291317ED0B1E00C7B96E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		65FA291517ED0B5D00C7B96E /* MXSFlirtViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXSFlirtViewController.h; sourceTree = "<group>"; };
 		65FA291617ED0B5D00C7B96E /* MXSFlirtViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXSFlirtViewController.m; sourceTree = "<group>"; };
@@ -828,6 +831,8 @@
 				65D9452317ED06770081E073 /* MXSMessage.m */,
 				65F7E80A1812409500436397 /* MXSMessages.h */,
 				65F7E80B1812409500436397 /* MXSMessages.m */,
+				65F7E80D1812554F00436397 /* MXSMessageCategory.h */,
+				65F7E80E1812554F00436397 /* MXSMessageCategory.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1097,6 +1102,7 @@
 				65A047E217FE4671001333FD /* MXSLuckyViewController.m in Sources */,
 				65E98D9517FCEA27000EEF0B /* all_73.js in Sources */,
 				65D944F417ECEC3A0081E073 /* main.m in Sources */,
+				65F7E80F1812554F00436397 /* MXSMessageCategory.m in Sources */,
 				65E98DBA17FCEA27000EEF0B /* search.js in Sources */,
 				653F30F51811E8F2009EAC94 /* FHSTwitterEngine.m in Sources */,
 				65E98DA217FCEA27000EEF0B /* functions_64.js in Sources */,
