@@ -17,6 +17,7 @@ static NSString * const kMXSMessagesCacheFileName = @"MXSMessagesCacheFile";
 @interface MXSMessages ()
 
 @property (nonatomic, strong) NSMutableDictionary *messages;
+@property (nonatomic, strong) dispatch_queue_t messagesAccessQueue;
 
 @end
 
@@ -24,7 +25,7 @@ static NSString * const kMXSMessagesCacheFileName = @"MXSMessagesCacheFile";
 
 - (void)messagesInCategory:(MXSMessageCategory *)category completion:(void (^)(NSArray *))completion
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    dispatch_async(self.messagesAccessQueue, ^{
         if (!self.messages[category.key]) {
             NSArray *messagesInCategory = [self loadMessagesFromCacheInCategory:category];
             if (messagesInCategory) {
@@ -42,6 +43,15 @@ static NSString * const kMXSMessagesCacheFileName = @"MXSMessagesCacheFile";
         
         completion([self.messages[category.key] copy]);
     });
+}
+
+- (dispatch_queue_t)messagesAccessQueue
+{
+    if (!_messagesAccessQueue) {
+        _messagesAccessQueue = dispatch_queue_create("com.smoov.messagesAccessQueue", DISPATCH_QUEUE_SERIAL);
+        // using a serial dispatch queue to ensure messagesInCategory method runs one request at a time.
+    }
+    return _messagesAccessQueue;
 }
 
 - (void)saveMessagesInCache:(NSArray *)messagesInCategory inCategory:(MXSMessageCategory *)category
