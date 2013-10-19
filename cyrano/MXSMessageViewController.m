@@ -16,6 +16,7 @@
 #import <iAd/iAd.h>
 #import "Flurry.h"
 #import <uservoice-iphone-sdk/UserVoice.h>
+#import "Reachability.h"
 
 #import <MessageUI/MessageUI.h>
 #import <AddressBook/AddressBook.h>
@@ -173,14 +174,19 @@
     for (MXSMessageCategory *category in self.categories) {
         [categoryActionSheet addButtonWithTitle:category.title];
     }
+    [categoryActionSheet addButtonWithTitle:@"Cancel"];
     [categoryActionSheet setOpaque:YES];
+    [categoryActionSheet setCancelButtonIndex:[self.categories count]];
     [categoryActionSheet showInView:self.view];
+    
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    self.messageCategory = self.categories[buttonIndex-1];
-    [self selectCategory:self.messageCategory];
+    if (buttonIndex != actionSheet.cancelButtonIndex) {
+        self.messageCategory = self.categories[buttonIndex];
+        [self selectCategory:self.messageCategory];
+    }
 }
 
 - (IBAction)extrasBarButtonPressed:(id)sender
@@ -253,26 +259,34 @@
 {
     if( gestureRecognizer.state != UIGestureRecognizerStateBegan ) return;
     
-    CGPoint p = [gestureRecognizer locationInView:self.messageTableView];
-    
-    NSIndexPath *indexPath = [self.messageTableView indexPathForRowAtPoint:p];
-    
-    if (indexPath == nil)
-        NSLog(@"long press on table view but not on a row");
+    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.com"];
+    if (reachability.reachabilityFlags & ReachableViaWiFi || reachability.reachabilityFlags & ReachableViaWWAN) {
+        
+        CGPoint p = [gestureRecognizer locationInView:self.messageTableView];
+        
+        NSIndexPath *indexPath = [self.messageTableView indexPathForRowAtPoint:p];
+        
+        if (indexPath == nil)
+            NSLog(@"long press on table view but not on a row");
+        else {
+            NSLog(@"long press on table view at row %d", indexPath.row);
+            
+            MXSMessage *selectedMessage = [self.messages objectAtIndex:indexPath.row];
+            
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            //The name "Main" is the filename of your storyboard (without the extension).
+            
+            MXSMessageReversalViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MXSMessageReversalViewController"];
+            // push to current navigation controller, from any view controller
+            vc.message = selectedMessage;
+            
+            [self.navigationController pushViewController:vc animated:NO];
+            [UIView transitionWithView:self.navigationController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight animations:nil completion:nil];
+        }
+    }
     else {
-        NSLog(@"long press on table view at row %d", indexPath.row);
-        
-        MXSMessage *selectedMessage = [self.messages objectAtIndex:indexPath.row];
-        
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        //The name "Main" is the filename of your storyboard (without the extension).
-        
-        MXSMessageReversalViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MXSMessageReversalViewController"];
-        // push to current navigation controller, from any view controller
-        vc.message = selectedMessage;
-        
-        [self.navigationController pushViewController:vc animated:NO];
-        [UIView transitionWithView:self.navigationController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight animations:nil completion:nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Internet connection required to see message detail" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
     }
 }
 

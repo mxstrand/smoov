@@ -24,11 +24,54 @@ static NSString * const kMXSMessagesCacheFileName = @"MXSMessagesCacheFile";
 
 - (void)messagesInCategory:(MXSMessageCategory *)category completion:(void (^)(NSArray *))completion
 {
-    if (!self.messages[category.key]) {
-        self.messages[category.key] = [self loadMessagesInCategory:category];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if (!self.messages[category.key]) {
+            NSArray *messagesInCategory = [self loadMessagesFromCacheInCategory:category];
+            if (messagesInCategory) {
+                self.messages[category.key] = messagesInCategory;
+            }
+        }
+        
+        if (!self.messages[category.key]) {
+            NSArray *messagesInCategory = [self loadMessagesInCategory:category];
+            if (messagesInCategory) {
+                self.messages[category.key] = messagesInCategory;
+                [self saveMessagesInCache:messagesInCategory inCategory:category];
+            }
+        }
+        
+        completion([self.messages[category.key] copy]);
+    });
+}
+
+- (void)saveMessagesInCache:(NSArray *)messagesInCategory inCategory:(MXSMessageCategory *)category
+{
+    NSString *archiveFilePath = [self archiveFilePathForCategory:category];
+    [NSKeyedArchiver archiveRootObject:messagesInCategory toFile:archiveFilePath];
+}
+
+- (NSArray *)loadMessagesFromCacheInCategory:(MXSMessageCategory *)category;
+{
+    NSString *archiveFilePath = [self archiveFilePathForCategory:category];
+    NSArray *messagesInCategory = [NSKeyedUnarchiver unarchiveObjectWithFile:archiveFilePath];
+    return messagesInCategory;
+}
+
+- (NSString *)archiveFilePathForCategory:(MXSMessageCategory *)category
+{
+    NSString *libraryPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *archiveDirectory = [libraryPath stringByAppendingPathComponent:@"UserData"];
+    BOOL isDirectory = NO;
+    BOOL directoryExists = [[NSFileManager defaultManager] fileExistsAtPath:archiveDirectory isDirectory:&isDirectory];
+    if (!isDirectory || !directoryExists) {
+        NSError *createError;
+        BOOL success = [[NSFileManager defaultManager] createDirectoryAtPath:archiveDirectory withIntermediateDirectories:YES attributes:nil error:&createError];
+        if (!success) {
+            NSLog(@"create directory failed: %@", createError);
+        }
     }
-    
-    completion([self.messages[category.key] copy]);
+    NSString *archiveFilePath = [archiveDirectory stringByAppendingPathComponent:category.key];
+    return archiveFilePath;
 }
 
 - (NSArray *)loadMessagesInCategory:(MXSMessageCategory *)category;
