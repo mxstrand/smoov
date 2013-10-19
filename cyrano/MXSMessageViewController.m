@@ -167,7 +167,7 @@
 {
     UIActionSheet *categoryActionSheet = [[UIActionSheet alloc] initWithTitle:@""
                                                                      delegate:self
-                                                            cancelButtonTitle:@"Cancel"
+                                                            cancelButtonTitle:nil
                                                        destructiveButtonTitle:nil
                                                             otherButtonTitles:nil];
     for (MXSMessageCategory *category in self.categories) {
@@ -230,7 +230,6 @@
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
     lpgr.minimumPressDuration = 1; //seconds
-    lpgr.delegate = self;
     [self.messageTableView addGestureRecognizer:lpgr];
     
     // Do any additional setup after loading the view, typically from a nib.
