@@ -18,6 +18,8 @@
     IBOutlet UIImageView *visualPopularityImage;
 }
 
+@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+
 -(void) populateWithMessage:(MXSMessage*)message;
 
 @end

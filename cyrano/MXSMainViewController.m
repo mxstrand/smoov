@@ -37,7 +37,8 @@ enum
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+        
+    // table styling
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:255/255.0f green:128/255.0f blue:0/255.0f alpha:1];
     self.tableView.separatorColor = [UIColor colorWithRed:255/255.0f green:128/255.0f blue:0/255.0f alpha:1];
@@ -74,13 +75,15 @@ enum
     [self.tableView addGestureRecognizer:lpgr];
     
     // Do any additional setup after loading the view, typically from a nib.
-    [self loadMessages];
+    [self loadParseMessages];
     standard = [NSUserDefaults standardUserDefaults];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self loadLocalMessages];
     
     if ([standard objectForKey:@"Person"]) {
         NSString *person = [standard stringForKey:@"Person"];
@@ -215,9 +218,9 @@ enum
 
 #pragma mark - showSMS
 
-- (void)showSMS:(NSString*)message {
-    
-    if(![MFMessageComposeViewController canSendText]) {
+- (void)showSMS:(NSString*)message
+{
+    if (![MFMessageComposeViewController canSendText]) {
         UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [warningAlert show];
         return;
@@ -254,7 +257,7 @@ enum
     });
 }
 
--(void) bannerViewDidLoadAd:(ADBannerView *)banner
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
     NSLog(@"did load ad %@", [self class]);
     
@@ -264,10 +267,9 @@ enum
 
 #pragma mark - Messages
 
-- (void) loadMessages
+- (void)loadLocalMessages
 {
     messages = [NSMutableArray new];
-    NSLog(@"messages being loaded");
     
     MXSMessage *message = [MXSMessage new];
     message.content = @"I thought you looked really pretty this morning.";
@@ -313,6 +315,38 @@ enum
     message.content = @"I've been thinking about our discussion and you were totally right.";
     message.popularityImage = 5;
     [messages addObject:message];
+
+    NSLog(@"LOCAL messages being loaded");
+}
+
+
+
+- (void) loadParseMessages
+{
+    messages = nil; // set MutableArray back to nil, so messages don't duplicate
+
+    PFQuery *query = [PFQuery queryWithClassName:@"Message"];
+    [query whereKey:@"category" equalTo:@"MostPop"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %d messages.", objects.count);
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                NSLog(@"%@", object.objectId);
+                MXSMessage *message = [MXSMessage new];
+                message.content = [object objectForKey:@"content"];
+                message.author = [object objectForKey:@"author"];
+                message.popularityImage = [[object objectForKey:@"popularity_rating"] integerValue];
+                [messages addObject:message];
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+        [self.tableView reloadData];
+    }];
+    NSLog(@"messages being loaded");
 }
 
 - (void)createMyAd
@@ -359,6 +393,12 @@ enum
 
 }
 
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD hides
+    [HUD removeFromSuperview];
+    HUD = nil;
+}
+
 
 //TO DO
 /*
@@ -370,8 +410,6 @@ enum
  Password: R2D2forPrez
  Twitter: smooveText
  Password: R2D2forPrez
- 
- Finished step 3 in the Parse install. Nex would be step 4. https://www.parse.com/apps/quickstart#ios/native/existing
  
 */
 

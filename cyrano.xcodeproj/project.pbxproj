@@ -10,7 +10,9 @@
 		12DE340E5FEE423DB687B7EB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57980DE19D59416EBCDEBA94 /* libPods.a */; };
 		6509100217F4B4490054DC04 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6509100117F4B4480054DC04 /* EventKit.framework */; };
 		650A9C4617FB6F6E00D4B9C4 /* UIActionSheet+MessageCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 650A9C4517FB6F6E00D4B9C4 /* UIActionSheet+MessageCategory.m */; };
+		6512B1621811B48300AEF06D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6512B1611811B48300AEF06D /* MBProgressHUD.m */; };
 		651BA63818108E7D00E47D9B /* MXSMessageReversalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 651BA63718108E7D00E47D9B /* MXSMessageReversalViewController.m */; };
+		653F30F51811E8F2009EAC94 /* FHSTwitterEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 653F30F41811E8F2009EAC94 /* FHSTwitterEngine.m */; };
 		6558549A17F23E5100A8B596 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6558549917F23E5100A8B596 /* iAd.framework */; };
 		65A047D717FE4242001333FD /* MXSRomanticViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A047D517FE4242001333FD /* MXSRomanticViewController.m */; };
 		65A047E017FE4671001333FD /* MXSBdayAnniversaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A047D817FE4671001333FD /* MXSBdayAnniversaryViewController.m */; };
@@ -189,6 +191,8 @@
 		65E98DD517FCEAA9000EEF0B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E98DD417FCEAA9000EEF0B /* Security.framework */; };
 		65E98DD717FCEABD000EEF0B /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E98DD617FCEABD000EEF0B /* AdSupport.framework */; };
 		65ED052717FDF11F007668C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65ED052617FDF11F007668C0 /* Images.xcassets */; };
+		65F7E80618123CBD00436397 /* MXSMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7E80518123CBD00436397 /* MXSMessageViewController.m */; };
+		65F7E80C1812409500436397 /* MXSMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7E80B1812409500436397 /* MXSMessages.m */; };
 		65FA291417ED0B1E00C7B96E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65FA291217ED0B1E00C7B96E /* Main.storyboard */; };
 		65FA291717ED0B5D00C7B96E /* MXSFlirtViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FA291617ED0B5D00C7B96E /* MXSFlirtViewController.m */; };
 		65FA291C17ED0F5800C7B96E /* MXSMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FA291B17ED0F5800C7B96E /* MXSMessageCell.m */; };
@@ -212,8 +216,12 @@
 		650A9C4317FB30B900D4B9C4 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		650A9C4417FB6F6E00D4B9C4 /* UIActionSheet+MessageCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+MessageCategory.h"; sourceTree = "<group>"; };
 		650A9C4517FB6F6E00D4B9C4 /* UIActionSheet+MessageCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+MessageCategory.m"; sourceTree = "<group>"; };
+		6512B1601811B48300AEF06D /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		6512B1611811B48300AEF06D /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		651BA63618108E7D00E47D9B /* MXSMessageReversalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXSMessageReversalViewController.h; sourceTree = "<group>"; };
 		651BA63718108E7D00E47D9B /* MXSMessageReversalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXSMessageReversalViewController.m; sourceTree = "<group>"; };
+		653F30F31811E8F2009EAC94 /* FHSTwitterEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FHSTwitterEngine.h; sourceTree = "<group>"; };
+		653F30F41811E8F2009EAC94 /* FHSTwitterEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FHSTwitterEngine.m; sourceTree = "<group>"; };
 		6558549917F23E5100A8B596 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		65A047D517FE4242001333FD /* MXSRomanticViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXSRomanticViewController.m; sourceTree = "<group>"; };
 		65A047D617FE4242001333FD /* MXSRomanticViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXSRomanticViewController.h; sourceTree = "<group>"; };
@@ -406,6 +414,10 @@
 		65E98DD417FCEAA9000EEF0B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		65E98DD617FCEABD000EEF0B /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		65ED052617FDF11F007668C0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		65F7E80418123CBD00436397 /* MXSMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXSMessageViewController.h; sourceTree = "<group>"; };
+		65F7E80518123CBD00436397 /* MXSMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXSMessageViewController.m; sourceTree = "<group>"; };
+		65F7E80A1812409500436397 /* MXSMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXSMessages.h; sourceTree = "<group>"; };
+		65F7E80B1812409500436397 /* MXSMessages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXSMessages.m; sourceTree = "<group>"; };
 		65FA291317ED0B1E00C7B96E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		65FA291517ED0B5D00C7B96E /* MXSFlirtViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXSFlirtViewController.h; sourceTree = "<group>"; };
 		65FA291617ED0B5D00C7B96E /* MXSFlirtViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXSFlirtViewController.m; sourceTree = "<group>"; };
@@ -456,6 +468,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6512B1631811B4B400AEF06D /* Helper Files */ = {
+			isa = PBXGroup;
+			children = (
+				65E98CA417FCEA27000EEF0B /* Flurry iPhone SDK viPhone 4 */,
+				653F30F31811E8F2009EAC94 /* FHSTwitterEngine.h */,
+				653F30F41811E8F2009EAC94 /* FHSTwitterEngine.m */,
+				6512B1601811B48300AEF06D /* MBProgressHUD.h */,
+				6512B1611811B48300AEF06D /* MBProgressHUD.m */,
+				650A9C4417FB6F6E00D4B9C4 /* UIActionSheet+MessageCategory.h */,
+				650A9C4517FB6F6E00D4B9C4 /* UIActionSheet+MessageCategory.m */,
+			);
+			name = "Helper Files";
+			sourceTree = "<group>";
+		};
 		651BA639181094C800E47D9B /* SecondaryViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -536,20 +562,13 @@
 		65D944ED17ECEC3A0081E073 /* cyrano */ = {
 			isa = PBXGroup;
 			children = (
+				6512B1631811B4B400AEF06D /* Helper Files */,
 				65FA291217ED0B1E00C7B96E /* Main.storyboard */,
 				651BA639181094C800E47D9B /* SecondaryViewControllers */,
-				65E98CA417FCEA27000EEF0B /* Flurry iPhone SDK viPhone 4 */,
 				65D944F617ECEC3A0081E073 /* MXSAppDelegate.h */,
 				65D944F717ECEC3A0081E073 /* MXSAppDelegate.m */,
-				65D944FC17ECEC3A0081E073 /* MXSMainViewController.h */,
-				65D944FD17ECEC3A0081E073 /* MXSMainViewController.m */,
+				65F7E80718123EF900436397 /* Messages */,
 				65A047E417FE46A9001333FD /* ChildrenOfMainViewController */,
-				650A9C4417FB6F6E00D4B9C4 /* UIActionSheet+MessageCategory.h */,
-				650A9C4517FB6F6E00D4B9C4 /* UIActionSheet+MessageCategory.m */,
-				65FA291A17ED0F5800C7B96E /* MXSMessageCell.h */,
-				65FA291B17ED0F5800C7B96E /* MXSMessageCell.m */,
-				65D9452217ED06770081E073 /* MXSMessage.h */,
-				65D9452317ED06770081E073 /* MXSMessage.m */,
 				65ED052617FDF11F007668C0 /* Images.xcassets */,
 				65D944EE17ECEC3A0081E073 /* Supporting Files */,
 			);
@@ -787,6 +806,39 @@
 				65E98D3E17FCEA27000EEF0B /* Jansson-LICENSE.txt */,
 			);
 			path = Licenses;
+			sourceTree = "<group>";
+		};
+		65F7E80718123EF900436397 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				65F7E8091812403F00436397 /* View */,
+				65F7E8081812402100436397 /* Model */,
+				65D944FC17ECEC3A0081E073 /* MXSMainViewController.h */,
+				65D944FD17ECEC3A0081E073 /* MXSMainViewController.m */,
+				65F7E80418123CBD00436397 /* MXSMessageViewController.h */,
+				65F7E80518123CBD00436397 /* MXSMessageViewController.m */,
+			);
+			name = Messages;
+			sourceTree = "<group>";
+		};
+		65F7E8081812402100436397 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				65D9452217ED06770081E073 /* MXSMessage.h */,
+				65D9452317ED06770081E073 /* MXSMessage.m */,
+				65F7E80A1812409500436397 /* MXSMessages.h */,
+				65F7E80B1812409500436397 /* MXSMessages.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		65F7E8091812403F00436397 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				65FA291A17ED0F5800C7B96E /* MXSMessageCell.h */,
+				65FA291B17ED0F5800C7B96E /* MXSMessageCell.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1028,9 +1080,11 @@
 				65E98D9717FCEA27000EEF0B /* all_76.js in Sources */,
 				65E98D7117FCEA27000EEF0B /* jquery.js in Sources */,
 				65E98DA017FCEA27000EEF0B /* functions_63.js in Sources */,
+				65F7E80C1812409500436397 /* MXSMessages.m in Sources */,
 				65FA291717ED0B5D00C7B96E /* MXSFlirtViewController.m in Sources */,
 				65E98DAE17FCEA27000EEF0B /* functions_70.js in Sources */,
 				65E98DA817FCEA27000EEF0B /* functions_67.js in Sources */,
+				6512B1621811B48300AEF06D /* MBProgressHUD.m in Sources */,
 				65E98D9917FCEA27000EEF0B /* classes_66.js in Sources */,
 				65E98DAC17FCEA27000EEF0B /* functions_6c.js in Sources */,
 				65E98DB017FCEA27000EEF0B /* functions_72.js in Sources */,
@@ -1044,6 +1098,7 @@
 				65E98D9517FCEA27000EEF0B /* all_73.js in Sources */,
 				65D944F417ECEC3A0081E073 /* main.m in Sources */,
 				65E98DBA17FCEA27000EEF0B /* search.js in Sources */,
+				653F30F51811E8F2009EAC94 /* FHSTwitterEngine.m in Sources */,
 				65E98DA217FCEA27000EEF0B /* functions_64.js in Sources */,
 				65A047E317FE4671001333FD /* MXSSorryViewController.m in Sources */,
 				65E98DA617FCEA27000EEF0B /* functions_66.js in Sources */,
@@ -1071,6 +1126,7 @@
 				65E98D8917FCEA27000EEF0B /* all_66.js in Sources */,
 				65E98D5217FCEA27000EEF0B /* dir_5f6c70842040d9fb1a41cb2ca8828a8e.js in Sources */,
 				65E98DB817FCEA27000EEF0B /* pages_64.js in Sources */,
+				65F7E80618123CBD00436397 /* MXSMessageViewController.m in Sources */,
 				65E98D4E17FCEA27000EEF0B /* dir_2c12105386bcc5c3935feab96f296a41.js in Sources */,
 				65D944F817ECEC3A0081E073 /* MXSAppDelegate.m in Sources */,
 				651BA63818108E7D00E47D9B /* MXSMessageReversalViewController.m in Sources */,

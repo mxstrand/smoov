@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <iAd/iAd.h>
+#import <Parse/Parse.h>
+#import "MBProgressHUD.h"
 
-@interface MXSMainViewController : UIViewController <ADBannerViewDelegate, UIGestureRecognizerDelegate>
+@interface MXSMainViewController : UIViewController <ADBannerViewDelegate, UIGestureRecognizerDelegate, MBProgressHUDDelegate>
 {
     NSMutableArray *messages;
     NSUserDefaults *standard; //supports abbreviated code in NSUserDefaults code references.
+
+    MBProgressHUD *HUD;
+    MBProgressHUD *refreshHUD;    
 }
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;

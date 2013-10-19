@@ -12,7 +12,9 @@
 @interface MXSMessageReversalViewController : UIViewController
 {
     IBOutlet UILabel *messageLabel;
+    IBOutlet UILabel *authorLabel;
     IBOutlet UIImageView *visualPopularityImage;
+    IBOutlet UIImageView *profileImage;
 }
 
 @property (nonatomic, weak) MXSMessage *message;

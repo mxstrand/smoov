@@ -11,6 +11,7 @@
 @interface MXSMessage : NSObject
 
 @property (nonatomic, copy) NSString *content;
-@property (nonatomic) CGFloat popularityImage;
+@property (nonatomic, copy) NSString *author;
+@property (nonatomic) NSInteger popularityImage;
 
 @end

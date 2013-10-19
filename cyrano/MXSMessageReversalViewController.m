@@ -7,10 +7,13 @@
 //
 
 #import "MXSMessageReversalViewController.h"
+#import "FHSTwitterEngine.h"
 
 @interface MXSMessageReversalViewController ()
 {
     UIView *messageReversalInfo;
+    UIImage *profileImg;
+    NSString *author;
 }
 @end
 
@@ -31,11 +34,24 @@
     [super viewDidLoad];
     
     [messageLabel setText:_message.content];
+    NSString *author = _message.author;
     
     visualPopularityImage.image = [self imageForPopularity:_message.popularityImage];
     
+    
     //[self subViewMethod];
 	// Do any additional setup after loading the view.
+    [[FHSTwitterEngine sharedEngine]permanentlySetConsumerKey:@"PYY26ixEeMeTzsV9UnV3A" andSecret:@"Uq6E52txfWkndIq0d29bShaYpsdv2NoV50d7MCnVwo"];
+
+    UIImage *profileImg = [[FHSTwitterEngine sharedEngine] getProfileImageForUsername:author andSize:FHSTwitterEngineImageSizeNormal];
+    
+    profileImage.image = profileImg;
+
+    NSString *twitterAuthor = @"@";
+    twitterAuthor = [twitterAuthor stringByAppendingString:_message.author];
+    [authorLabel setText:twitterAuthor];
+    
+    [self clickableAuthor];
 }
 
 
@@ -64,6 +80,24 @@
 	}
     
 	return popularityImage;
+}
+
+- (void)clickableAuthor
+{
+    authorLabel.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *gestureRec = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openUrl:)];
+    gestureRec.numberOfTouchesRequired = 1;
+    gestureRec.numberOfTapsRequired = 1;
+    [authorLabel addGestureRecognizer:gestureRec];
+}
+
+- (void)openUrl:(id)sender
+{
+    NSString *twitterAuthorProfileURL;
+    twitterAuthorProfileURL = @"twitter://user?screen_name=";
+    twitterAuthorProfileURL= [twitterAuthorProfileURL stringByAppendingString:_message.author];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:twitterAuthorProfileURL]];
 }
 
 - (void)subViewMethod

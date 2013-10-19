@@ -15,7 +15,7 @@
 
 @implementation MXSFlirtViewController
 
-- (void) loadMessages
+- (void) loadLocalMessages
 {
     messages = [NSMutableArray new];
     NSLog(@"messages being loaded");
@@ -106,6 +106,35 @@
     [messages addObject:message];
 
 }
+
+- (void) loadParseMessages
+{
+    messages = nil; // set MutableArray back to nil, so messages don't duplicate
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Message"];
+    [query whereKey:@"category" equalTo:@"FlirtFunny"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %d messages.", objects.count);
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                NSLog(@"%@", object.objectId);
+                MXSMessage *message = [MXSMessage new];
+                message.content = [object objectForKey:@"content"];
+                message.author = [object objectForKey:@"author"];
+                message.popularityImage = [[object objectForKey:@"popularity_rating"] integerValue];
+                [messages addObject:message];
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+        [self.tableView reloadData];
+    }];
+    NSLog(@"messages being loaded");
+}
+
 
 
 @end
