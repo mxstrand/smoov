@@ -107,6 +107,7 @@ static NSString * const kMXSMessagesCacheFileName = @"MXSMessagesCacheFile";
     
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
     [query whereKey:@"category" equalTo:category.key];
+    [query orderByDescending:@"createdAt"];
 
     NSError *error;
     NSArray *objects = [query findObjects:&error];
