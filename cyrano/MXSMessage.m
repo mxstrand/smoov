@@ -8,6 +8,28 @@
 
 #import "MXSMessage.h"
 
+@interface MXSMessage () <NSCoding>
+
+@end
+
 @implementation MXSMessage
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [self init];
+    if (self) {
+        _content = [aDecoder decodeObjectForKey:@"content"];
+        _author = [aDecoder decodeObjectForKey:@"author"];
+        _popularityImage = [[aDecoder decodeObjectForKey:@"popularityImage"] integerValue];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.content forKey:@"content"];
+    [aCoder encodeObject:self.author forKey:@"author"];
+    [aCoder encodeObject:@(self.popularityImage) forKey:@"popularityImage"];
+}
 
 @end

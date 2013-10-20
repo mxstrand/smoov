@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>89D53333-0145-4779-A308-9CD9111AF1E3</string>
+	<key>IDESourceControlProjectName</key>
+	<string>cyrano</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>1337C0FA-8BB8-4BE7-BD98-AAD44FECCF33</key>
+		<string>ssh://bitbucket.org/mxstrand/smoov.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>cyrano.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>1337C0FA-8BB8-4BE7-BD98-AAD44FECCF33</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://bitbucket.org/mxstrand/smoov.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>1337C0FA-8BB8-4BE7-BD98-AAD44FECCF33</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1337C0FA-8BB8-4BE7-BD98-AAD44FECCF33</string>
+			<key>IDESourceControlWCCName</key>
+			<string>cyrano</string>
+		</dict>
+	</array>
+</dict>
+</plist>

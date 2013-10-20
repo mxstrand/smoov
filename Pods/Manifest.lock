@@ -1,0 +1,13 @@
+PODS:
+  - Facebook-iOS-SDK (3.8.0)
+  - uservoice-iphone-sdk (2.0.12)
+
+DEPENDENCIES:
+  - Facebook-iOS-SDK
+  - uservoice-iphone-sdk
+
+SPEC CHECKSUMS:
+  Facebook-iOS-SDK: 55a22fe8bcaacd638cde9014af6b3ee85f4d71fb
+  uservoice-iphone-sdk: 1a6b31c204a6208225197f100a67d286f51b9f0d
+
+COCOAPODS: 0.25.0

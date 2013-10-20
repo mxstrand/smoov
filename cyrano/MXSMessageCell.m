@@ -8,16 +8,10 @@
 
 #import "MXSMessageCell.h"
 #import "MXSMessage.h"
+#import <Parse/Parse.h>
 
 @implementation MXSMessageCell
 
--(void) populateWithMessage:(MXSMessage*)messagex
-{
-    self->message.text = messagex.content;
-    
-    visualPopularityImage.image = [self imageForPopularity:messagex.popularityImage];
-    
-}
 
 - (UIImage *)imageForPopularity:(CGFloat)popularity
 {
