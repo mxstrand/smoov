@@ -93,7 +93,7 @@
         <scene sceneID="TBL-L6-frJ">
             <objects>
                 <viewController storyboardIdentifier="MXSPreferencesViewController" id="ZJ6-ZB-blM" customClass="MXSPreferencesViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="37B-n4-Mr7">
+                    <view key="view" contentMode="scaleToFill" id="37B-n4-Mr7" customClass="UIScrollView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -251,6 +251,7 @@
                     <connections>
                         <outlet property="contactUsButton" destination="Fe0-Fe-pp9" id="II2-uA-OY6"/>
                         <outlet property="personLabel" destination="t2A-gP-OIr" id="dDp-kF-PMY"/>
+                        <outlet property="scrollView" destination="37B-n4-Mr7" id="vqz-DL-xPr"/>
                         <outlet property="setDefaultRecipientButton" destination="Hkf-5r-XHq" id="wAV-lo-y62"/>
                         <outlet property="shareWithUsButton" destination="bJK-o2-En2" id="oMx-mN-EkD"/>
                         <outlet property="weeklyCalendarEventStatusLabel" destination="ery-We-ez4" id="O1m-9S-IVI"/>
@@ -272,44 +273,82 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="agN-3V-wD7">
-                                <rect key="frame" x="24" y="97" width="272" height="42"/>
+                                <rect key="frame" x="17" y="97" width="272" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vdf-Ml-i2u">
-                                <rect key="frame" x="24" y="175" width="56" height="21"/>
+                                <rect key="frame" x="17" y="224" width="83" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.49019607843137253" green="0.49019607843137253" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popularity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="I6s-MV-qiZ">
-                                <rect key="frame" x="24" y="299" width="78" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show author profile photo?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0dm-Yi-Tti">
+                                <rect key="frame" x="17" y="344" width="214" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To see author images, you must permit access to Twitter with a valid Twitter account." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tSq-6L-uxE">
+                                <rect key="frame" x="17" y="369" width="280" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popularity:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="I6s-MV-qiZ">
+                                <rect key="frame" x="17" y="169" width="89" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.49019607843137253" green="0.49019607843137253" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZjO-oa-Qhs">
-                                <rect key="frame" x="103" y="175" width="146" height="21"/>
+                                <rect key="frame" x="93" y="224" width="146" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="dZS-cs-IFs">
-                                <rect key="frame" x="121" y="296" width="118" height="28"/>
+                                <rect key="frame" x="118" y="171" width="80" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="4tO-eX-6qp">
-                                <rect key="frame" x="20" y="204" width="59" height="56"/>
+                                <rect key="frame" x="17" y="253" width="59" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="as9-px-F1i">
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="PfE-wS-F5g" id="he5-yQ-EAz"/>
+                                </connections>
+                            </adBannerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KIL-mf-qdb">
+                                <rect key="frame" x="248" y="338" width="53" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Yes">
+                                    <color key="titleColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showAuthorProfileImages:" destination="PfE-wS-F5g" eventType="touchUpInside" id="3Vh-1Y-e2D"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="authorImageButton" destination="KIL-mf-qdb" id="aB5-Wy-K93"/>
                         <outlet property="authorLabel" destination="ZjO-oa-Qhs" id="42O-RW-mjv"/>
+                        <outlet property="banner" destination="as9-px-F1i" id="Q03-PL-AN1"/>
                         <outlet property="messageLabel" destination="agN-3V-wD7" id="MnJ-aq-kXc"/>
                         <outlet property="profileImage" destination="4tO-eX-6qp" id="y8Y-80-Z17"/>
                         <outlet property="visualPopularityImage" destination="dZS-cs-IFs" id="SdH-ga-C3j"/>
@@ -317,7 +356,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hsz-Fa-TAs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="943" y="-20"/>
+            <point key="canvasLocation" x="943" y="-56"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="n97-Eo-O95">

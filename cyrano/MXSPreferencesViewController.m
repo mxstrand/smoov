@@ -24,6 +24,7 @@
 @property (strong, nonatomic) EKEventStore *calendarEventStore;
 @property (strong, nonatomic) EKEventStore *reminderEventStore;
 
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
@@ -61,8 +62,12 @@
     [layer3 setCornerRadius:16.0]; //when radius is 0, the border is a rectangle
     [layer3 setBorderWidth:1.35];
     [layer3 setBorderColor:[[UIColor colorWithRed:255/255.0f green:128/255.0f blue:0/255.0f alpha:1] CGColor]];
-
     
+    // Format the scroll view.
+    [self.scrollView setContentSize:CGSizeMake(320, 568)];
+    self.automaticallyAdjustsScrollViewInsets = NO; // without this I was getting some extra spacing at the top.
+
+
     
 //    [standard setBool:NO forKey:@"recurringCalendarEventSet"]; // Yes = 1 in Objective-C
 }

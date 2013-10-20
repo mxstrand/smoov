@@ -8,13 +8,23 @@
 
 #import "MXSMessageReversalViewController.h"
 #import "FHSTwitterEngine.h"
+#import <Twitter/Twitter.h>
+
+#import <iAd/iAd.h>
+#import "Flurry.h"
+#import <uservoice-iphone-sdk/UserVoice.h>
 
 @interface MXSMessageReversalViewController ()
 {
     UIView *messageReversalInfo;
     UIImage *profileImg;
     NSString *author;
+    UIView *myAdView;
 }
+
+@property (nonatomic, strong) IBOutlet ADBannerView *banner;
+@property (nonatomic, weak) IBOutlet UIButton *authorImageButton;
+
 @end
 
 @implementation MXSMessageReversalViewController
@@ -34,26 +44,40 @@
     [super viewDidLoad];
     
     [messageLabel setText:_message.content];
-    NSString *author = _message.author;
-    
     visualPopularityImage.image = [self imageForPopularity:_message.popularityImage];
-    
-    
-    //[self subViewMethod];
-	// Do any additional setup after loading the view.
-    [[FHSTwitterEngine sharedEngine]permanentlySetConsumerKey:@"PYY26ixEeMeTzsV9UnV3A" andSecret:@"Uq6E52txfWkndIq0d29bShaYpsdv2NoV50d7MCnVwo"];
-
-    UIImage *profileImg = [[FHSTwitterEngine sharedEngine] getProfileImageForUsername:author andSize:FHSTwitterEngineImageSizeNormal];
-    
-    profileImage.image = profileImg;
 
     NSString *twitterAuthor = @"@";
     twitterAuthor = [twitterAuthor stringByAppendingString:_message.author];
     [authorLabel setText:twitterAuthor];
     
     [self clickableAuthor];
-}
+    [self getAuthorImageFromTwitter];
+    [self createMyAd];
+    
+    // If 3.5 inch device, adjust view size and banner placement, so visible.
+    if( self.view.frame.size.height == 480. ) {
+        CGRect frame = self.view.frame;
+        frame.size.height = self.view.frame.size.height - frame.origin.y - _banner.frame.size.height;
+        self.view.frame = frame;
+        
+        frame = _banner.frame;
+        frame.origin.y = self.view.frame.origin.y + self.view.frame.size.height;
+        _banner.frame = frame;
+        
+        frame = myAdView.frame;
+        frame.origin.y = self.view.frame.origin.y + self.view.frame.size.height;
+        myAdView.frame = frame;
+    }
+    
+    // Format button
+    CALayer * layer = [self.authorImageButton layer];
+    [layer setMasksToBounds:YES];
+    [layer setCornerRadius:16.0]; //when radius is 0, the border is a rectangle
+    [layer setBorderWidth:1.35];
+    [layer setBorderColor:[[UIColor colorWithRed:255/255.0f green:128/255.0f blue:0/255.0f alpha:1] CGColor]];
 
+
+}
 
 - (UIImage *)imageForPopularity:(CGFloat)popularity
 {
@@ -100,6 +124,63 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:twitterAuthorProfileURL]];
 }
 
+
+- (void)createMyAd
+{
+    myAdView = [[UIView alloc] initWithFrame:_banner.frame];
+    myAdView.backgroundColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
+    [self.view addSubview:myAdView];
+    //myAdView.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *touchOnView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(contactUs)];
+    // Set required taps and number of touches
+    [touchOnView setNumberOfTapsRequired:1];
+    [touchOnView setNumberOfTouchesRequired:1];
+    [myAdView addGestureRecognizer:touchOnView];
+    
+    UILabel *adLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(20, 3, 300, 25)];
+    
+    [adLabel1 setTextColor:[UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1]];
+    [adLabel1 setBackgroundColor:[UIColor clearColor]];
+    [adLabel1 setFont:[UIFont fontWithName: @"Helvetica-Bold" size: 15.0f]];
+    [adLabel1 setNumberOfLines:2];
+    [adLabel1 setText:@"Your name could be here too!"];
+    [myAdView addSubview:adLabel1];
+    
+    UILabel *adLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(93, 25, 300, 20)];
+    
+    [adLabel2 setTextColor:[UIColor colorWithRed:0/255.0f green:0/255.0f blue:0/255.0f alpha:1]];
+    [adLabel2 setBackgroundColor:[UIColor clearColor]];
+    [adLabel2 setFont:[UIFont fontWithName: @"Helvetica-Bold" size: 15.0f]];
+    [adLabel2 setNumberOfLines:2];
+    [adLabel2 setText:@"Click here to 'POST AN IDEA'"];
+    [myAdView addSubview:adLabel2];
+    
+}
+
+
+
+# pragma mark - Ad Error Handling
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    NSLog(@"Error Loading Ad in %@", [self class]);
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.view addSubview:myAdView];
+    });
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    NSLog(@"did load ad %@", [self class]);
+    
+    [myAdView removeFromSuperview];
+}
+
+
+
+
 - (void)subViewMethod
 {
     [messageReversalInfo removeFromSuperview];
@@ -126,6 +207,43 @@
 
 }
 
+- (void)contactUs
+{
+    UVConfig *config = [UVConfig configWithSite:@"smoov.uservoice.com"
+                                         andKey:@"jXrGUkCby9YjzgTsoKIA"
+                                      andSecret:@"xSDPS0gEKKTf8R142QuJlrR3VjPpqlAtAcWMw6R0Y"];
+    
+    [UserVoice presentUserVoiceInterfaceForParentViewController:self andConfig:config];
+    [Flurry logEvent:@"Uservoice engaged from ad"];
+}
+
+
+- (IBAction)showAuthorProfileImages:(id)sender
+{
+    [[FHSTwitterEngine sharedEngine]permanentlySetConsumerKey:@"PYY26ixEeMeTzsV9UnV3A" andSecret:@"Uq6E52txfWkndIq0d29bShaYpsdv2NoV50d7MCnVwo"];
+
+    [[FHSTwitterEngine sharedEngine]showOAuthLoginControllerFromViewController:self
+                                                                withCompletion:^(BOOL success) {
+        if (success) {
+            [self getAuthorImageFromTwitter];
+            //[[FHSTwitterEngine sharedEngine]setDelegate:self];
+        }
+    }];
+}
+
+- (void)getAuthorImageFromTwitter
+{
+    NSString *messageAuthor = _message.author;
+    [[FHSTwitterEngine sharedEngine]loadAccessToken];
+    UIImage *authorProfileImg = [[FHSTwitterEngine sharedEngine] getProfileImageForUsername:messageAuthor andSize:FHSTwitterEngineImageSizeNormal];
+    
+    if ([authorProfileImg isKindOfClass:[UIImage class]]) {
+        profileImage.image = authorProfileImg;
+    }
+    else {
+        NSLog(@"%@", authorProfileImg);
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {

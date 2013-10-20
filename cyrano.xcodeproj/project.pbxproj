@@ -26,14 +26,15 @@
 		65D9451117ECEC3A0081E073 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65D9450F17ECEC3A0081E073 /* InfoPlist.strings */; };
 		65D9451317ECEC3A0081E073 /* cyranoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D9451217ECEC3A0081E073 /* cyranoTests.m */; };
 		65D9452417ED06770081E073 /* MXSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D9452317ED06770081E073 /* MXSMessage.m */; };
-		65DC926E18034F0500C7C1E2 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DC926D18034F0500C7C1E2 /* Parse.framework */; };
 		65DC927018034F5200C7C1E2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DC926F18034F5200C7C1E2 /* AudioToolbox.framework */; };
 		65DC927218034F5C00C7C1E2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DC927118034F5C00C7C1E2 /* CFNetwork.framework */; };
 		65DC927418034F6B00C7C1E2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DC927318034F6B00C7C1E2 /* CoreLocation.framework */; };
 		65DC927618034F7D00C7C1E2 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DC927518034F7D00C7C1E2 /* libz.1.1.3.dylib */; };
 		65DC927818034F8C00C7C1E2 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DC927718034F8C00C7C1E2 /* MobileCoreServices.framework */; };
 		65DC927A18034F9700C7C1E2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DC927918034F9700C7C1E2 /* QuartzCore.framework */; };
-		65DC927C18034FA700C7C1E2 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DC927B18034FA700C7C1E2 /* StoreKit.framework */; };
+		65DFDB401814636000D0854F /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DC926D18034F0500C7C1E2 /* Parse.framework */; };
+		65DFDB441814954400D0854F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DFDB431814954400D0854F /* Social.framework */; };
+		65DFDB461814955300D0854F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DFDB451814955300D0854F /* Accounts.framework */; };
 		65E723B717ED608600A294EB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E723B617ED608600A294EB /* MessageUI.framework */; };
 		65E98D4017FCEA27000EEF0B /* libFlurry_4.2.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E98CA817FCEA27000EEF0B /* libFlurry_4.2.4.a */; };
 		65E98D4117FCEA27000EEF0B /* _flurry_8h_source.html in Resources */ = {isa = PBXBuildFile; fileRef = 65E98CAA17FCEA27000EEF0B /* _flurry_8h_source.html */; };
@@ -242,6 +243,9 @@
 		65DC927718034F8C00C7C1E2 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		65DC927918034F9700C7C1E2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		65DC927B18034FA700C7C1E2 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		65DFDB4118148E6500D0854F /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		65DFDB431814954400D0854F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		65DFDB451814955300D0854F /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		65E723B617ED608600A294EB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		65E98CA717FCEA27000EEF0B /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		65E98CA817FCEA27000EEF0B /* libFlurry_4.2.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.2.4.a; sourceTree = "<group>"; };
@@ -414,7 +418,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65DC927C18034FA700C7C1E2 /* StoreKit.framework in Frameworks */,
+				65DFDB461814955300D0854F /* Accounts.framework in Frameworks */,
+				65DFDB441814954400D0854F /* Social.framework in Frameworks */,
 				65DC927A18034F9700C7C1E2 /* QuartzCore.framework in Frameworks */,
 				65DC927818034F8C00C7C1E2 /* MobileCoreServices.framework in Frameworks */,
 				65DC927618034F7D00C7C1E2 /* libz.1.1.3.dylib in Frameworks */,
@@ -427,8 +432,8 @@
 				65E98D4017FCEA27000EEF0B /* libFlurry_4.2.4.a in Frameworks */,
 				6509100217F4B4490054DC04 /* EventKit.framework in Frameworks */,
 				6558549A17F23E5100A8B596 /* iAd.framework in Frameworks */,
-				65DC926E18034F0500C7C1E2 /* Parse.framework in Frameworks */,
 				65E723B717ED608600A294EB /* MessageUI.framework in Frameworks */,
+				65DFDB401814636000D0854F /* Parse.framework in Frameworks */,
 				65D944EA17ECEC3A0081E073 /* CoreGraphics.framework in Frameworks */,
 				65E98DC617FCEA27000EEF0B /* libFlurryAds_4.2.4.a in Frameworks */,
 				65D944EC17ECEC3A0081E073 /* UIKit.framework in Frameworks */,
@@ -516,6 +521,9 @@
 		65D944E617ECEC3A0081E073 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				65DFDB451814955300D0854F /* Accounts.framework */,
+				65DFDB431814954400D0854F /* Social.framework */,
+				65DFDB4118148E6500D0854F /* Twitter.framework */,
 				65DC927B18034FA700C7C1E2 /* StoreKit.framework */,
 				65DC927918034F9700C7C1E2 /* QuartzCore.framework */,
 				65DC927718034F8C00C7C1E2 /* MobileCoreServices.framework */,
@@ -1241,8 +1249,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Strand (AGJRJT2L5R)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/mxstrand/dev_iOS/SMS\\ apps/cyrano/cyrano",
-					"/Users/mxstrand/dev_iOS/SMS\\ apps/cyrano",
+					/Users/mxstrand/smoov,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cyrano/cyrano-Prefix.pch";
@@ -1250,8 +1257,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/mxstrand/dev_iOS/SMS\\ apps/cyrano/Flurry\\ iPhone\\ SDK\\ viPhone\\ 4/Flurry-iOS-4.2.4/Flurry",
-					"/Users/mxstrand/dev_iOS/SMS\\ apps/cyrano/Flurry\\ iPhone\\ SDK\\ viPhone\\ 4/Flurry-iOS-4.2.4/FlurryAds",
+					"/Users/mxstrand/smoov/Flurry\\ iPhone\\ SDK\\ viPhone\\ 4/Flurry-iOS-4.2.4/Flurry",
+					"/Users/mxstrand/smoov/Flurry\\ iPhone\\ SDK\\ viPhone\\ 4/Flurry-iOS-4.2.4/FlurryAds",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
@@ -1269,8 +1276,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Michael Strand (P3V92265CW)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/mxstrand/dev_iOS/SMS\\ apps/cyrano/cyrano",
-					"/Users/mxstrand/dev_iOS/SMS\\ apps/cyrano",
+					/Users/mxstrand/smoov,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cyrano/cyrano-Prefix.pch";
@@ -1278,8 +1284,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/mxstrand/dev_iOS/SMS\\ apps/cyrano/Flurry\\ iPhone\\ SDK\\ viPhone\\ 4/Flurry-iOS-4.2.4/Flurry",
-					"/Users/mxstrand/dev_iOS/SMS\\ apps/cyrano/Flurry\\ iPhone\\ SDK\\ viPhone\\ 4/Flurry-iOS-4.2.4/FlurryAds",
+					"/Users/mxstrand/smoov/Flurry\\ iPhone\\ SDK\\ viPhone\\ 4/Flurry-iOS-4.2.4/Flurry",
+					"/Users/mxstrand/smoov/Flurry\\ iPhone\\ SDK\\ viPhone\\ 4/Flurry-iOS-4.2.4/FlurryAds",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
