@@ -28,20 +28,37 @@ static NSString * const kMXSMessagesCacheFileName = @"MXSMessagesCacheFile";
     dispatch_async(self.messagesAccessQueue, ^{
         if (!self.messages[category.key]) {
             NSArray *messagesInCategory = [self loadMessagesFromCacheInCategory:category];
+
             if (messagesInCategory) {
                 self.messages[category.key] = messagesInCategory;
+                completion([self.messages[category.key] copy]);
+                [self refreshCacheForCategory:category completion:nil];
+            }
+            else {
+                [self refreshCacheForCategory:category completion:^{
+                    completion([self.messages[category.key] copy]);
+                }];
             }
         }
+        else {
+            completion([self.messages[category.key] copy]);
+        }
+    });
+}
+
+- (void)refreshCacheForCategory:(MXSMessageCategory *)category completion:(void (^)())completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSArray *messagesInCategory = [self loadMessagesInCategory:category];
         
-        if (!self.messages[category.key]) {
-            NSArray *messagesInCategory = [self loadMessagesInCategory:category];
-            if (messagesInCategory) {
-                self.messages[category.key] = messagesInCategory;
-                [self saveMessagesInCache:messagesInCategory inCategory:category];
-            }
+        if (messagesInCategory) {
+            self.messages[category.key] = messagesInCategory;
+            [self saveMessagesInCache:messagesInCategory inCategory:category];
         }
         
-        completion([self.messages[category.key] copy]);
+        if (completion) {
+            completion();
+        }
     });
 }
 
@@ -86,7 +103,7 @@ static NSString * const kMXSMessagesCacheFileName = @"MXSMessagesCacheFile";
 
 - (NSArray *)loadMessagesInCategory:(MXSMessageCategory *)category;
 {
-    NSMutableArray *messages = [NSMutableArray new];
+    NSMutableArray *messages;
     
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
     [query whereKey:@"category" equalTo:category.key];
@@ -96,6 +113,7 @@ static NSString * const kMXSMessagesCacheFileName = @"MXSMessagesCacheFile";
 
     if (!error) {
         // The find succeeded.
+        messages = [NSMutableArray new];
         NSLog(@"Successfully retrieved %d messages.", objects.count);
         // Do something with the found objects
         for (PFObject *object in objects) {
@@ -108,6 +126,7 @@ static NSString * const kMXSMessagesCacheFileName = @"MXSMessagesCacheFile";
         }
     } else {
         // Log details of the failure
+        
         NSLog(@"Error: %@ %@", error, [error userInfo]);
     }
     NSLog(@"messages being loaded");
