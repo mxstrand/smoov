@@ -76,6 +76,13 @@
     [layer setBorderWidth:1.35];
     [layer setBorderColor:[[UIColor colorWithRed:255/255.0f green:128/255.0f blue:0/255.0f alpha:1] CGColor]];
 
+    
+    CALayer * layer2 = [self->authorLabel layer];
+    [layer2 setMasksToBounds:YES];
+    [layer2 setCornerRadius:16.0]; //when radius is 0, the border is a rectangle
+    [layer2 setBorderWidth:1.35];
+    [layer2 setBorderColor:[[UIColor colorWithRed:255/255.0f green:128/255.0f blue:0/255.0f alpha:1] CGColor]];
+
 
 }
 
